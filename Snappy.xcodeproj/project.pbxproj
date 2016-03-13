@@ -8,21 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		1458F51A1C95F81200218D06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F5191C95F81200218D06 /* AppDelegate.swift */; };
-		1458F51C1C95F81200218D06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F51B1C95F81200218D06 /* ViewController.swift */; };
 		1458F51F1C95F81200218D06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1458F51D1C95F81200218D06 /* Main.storyboard */; };
 		1458F5211C95F81200218D06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1458F5201C95F81200218D06 /* Assets.xcassets */; };
 		1458F5241C95F81200218D06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1458F5221C95F81200218D06 /* LaunchScreen.storyboard */; };
+		1458F52C1C95FA7800218D06 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F52B1C95FA7800218D06 /* SnapContainerViewController.swift */; };
+		1458F52E1C95FA8900218D06 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F52D1C95FA8900218D06 /* VerticalScrollViewController.swift */; };
 		D4DFB992C8CC18C582846F63 /* Pods_Snappy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3E0D58D147947ED0FCB4CE /* Pods_Snappy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1458F5161C95F81200218D06 /* Snappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1458F5191C95F81200218D06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1458F51B1C95F81200218D06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1458F51E1C95F81200218D06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1458F5201C95F81200218D06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1458F5231C95F81200218D06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1458F5251C95F81200218D06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1458F52B1C95FA7800218D06 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
+		1458F52D1C95FA8900218D06 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
 		1714F51530166E8B731829C1 /* Pods-Snappy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snappy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Snappy/Pods-Snappy.debug.xcconfig"; sourceTree = "<group>"; };
 		8C3E0D58D147947ED0FCB4CE /* Pods_Snappy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snappy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0FF4A0F9D31E96AC7C33762 /* Pods-Snappy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snappy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Snappy/Pods-Snappy.release.xcconfig"; sourceTree = "<group>"; };
@@ -62,11 +64,12 @@
 			isa = PBXGroup;
 			children = (
 				1458F5191C95F81200218D06 /* AppDelegate.swift */,
-				1458F51B1C95F81200218D06 /* ViewController.swift */,
 				1458F51D1C95F81200218D06 /* Main.storyboard */,
 				1458F5201C95F81200218D06 /* Assets.xcassets */,
 				1458F5221C95F81200218D06 /* LaunchScreen.storyboard */,
 				1458F5251C95F81200218D06 /* Info.plist */,
+				1458F52B1C95FA7800218D06 /* SnapContainerViewController.swift */,
+				1458F52D1C95FA8900218D06 /* VerticalScrollViewController.swift */,
 			);
 			path = Snappy;
 			sourceTree = "<group>";
@@ -210,8 +213,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1458F51C1C95F81200218D06 /* ViewController.swift in Sources */,
+				1458F52E1C95FA8900218D06 /* VerticalScrollViewController.swift in Sources */,
 				1458F51A1C95F81200218D06 /* AppDelegate.swift in Sources */,
+				1458F52C1C95FA7800218D06 /* SnapContainerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
