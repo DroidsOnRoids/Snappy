@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="706" y="-387"/>
         </scene>
-        <!--View Controller-->
+        <!--Photo View Controller-->
         <scene sceneID="5eW-Bn-Yeu">
             <objects>
-                <viewController storyboardIdentifier="middle" id="PXx-TQ-2cO" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="middle" id="PXx-TQ-2cO" customClass="PhotoViewController" customModule="Snappy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="od3-jJ-AaX"/>
                         <viewControllerLayoutGuide type="bottom" id="u9m-1I-lwF"/>

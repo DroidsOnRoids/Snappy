@@ -13,6 +13,10 @@
 		1458F5241C95F81200218D06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1458F5221C95F81200218D06 /* LaunchScreen.storyboard */; };
 		1458F52C1C95FA7800218D06 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F52B1C95FA7800218D06 /* SnapContainerViewController.swift */; };
 		1458F52E1C95FA8900218D06 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F52D1C95FA8900218D06 /* VerticalScrollViewController.swift */; };
+		1458F5321C95FECB00218D06 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F5311C95FECB00218D06 /* PhotoViewController.swift */; };
+		1458F5361C95FF6800218D06 /* CameraManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F5351C95FF6800218D06 /* CameraManagerProtocol.swift */; };
+		1458F5381C95FF8800218D06 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F5371C95FF8800218D06 /* CameraManager.swift */; };
+		1458F53C1C95FFCC00218D06 /* SnappyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F53B1C95FFCC00218D06 /* SnappyAPI.swift */; };
 		D4DFB992C8CC18C582846F63 /* Pods_Snappy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3E0D58D147947ED0FCB4CE /* Pods_Snappy.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +29,10 @@
 		1458F5251C95F81200218D06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1458F52B1C95FA7800218D06 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
 		1458F52D1C95FA8900218D06 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
+		1458F5311C95FECB00218D06 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		1458F5351C95FF6800218D06 /* CameraManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManagerProtocol.swift; sourceTree = "<group>"; };
+		1458F5371C95FF8800218D06 /* CameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		1458F53B1C95FFCC00218D06 /* SnappyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnappyAPI.swift; sourceTree = "<group>"; };
 		1714F51530166E8B731829C1 /* Pods-Snappy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snappy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Snappy/Pods-Snappy.debug.xcconfig"; sourceTree = "<group>"; };
 		8C3E0D58D147947ED0FCB4CE /* Pods_Snappy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snappy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0FF4A0F9D31E96AC7C33762 /* Pods-Snappy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snappy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Snappy/Pods-Snappy.release.xcconfig"; sourceTree = "<group>"; };
@@ -63,15 +71,59 @@
 		1458F5181C95F81200218D06 /* Snappy */ = {
 			isa = PBXGroup;
 			children = (
-				1458F5191C95F81200218D06 /* AppDelegate.swift */,
+				1458F5301C95FEBA00218D06 /* Controllers */,
+				1458F52F1C95FE9700218D06 /* Utils */,
 				1458F51D1C95F81200218D06 /* Main.storyboard */,
 				1458F5201C95F81200218D06 /* Assets.xcassets */,
 				1458F5221C95F81200218D06 /* LaunchScreen.storyboard */,
 				1458F5251C95F81200218D06 /* Info.plist */,
+			);
+			path = Snappy;
+			sourceTree = "<group>";
+		};
+		1458F52F1C95FE9700218D06 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1458F53A1C95FFAD00218D06 /* API */,
+				1458F5341C95FF3C00218D06 /* Camera */,
+				1458F5331C95FF3300218D06 /* SwipeableViewController */,
+				1458F5191C95F81200218D06 /* AppDelegate.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		1458F5301C95FEBA00218D06 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1458F5311C95FECB00218D06 /* PhotoViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1458F5331C95FF3300218D06 /* SwipeableViewController */ = {
+			isa = PBXGroup;
+			children = (
 				1458F52B1C95FA7800218D06 /* SnapContainerViewController.swift */,
 				1458F52D1C95FA8900218D06 /* VerticalScrollViewController.swift */,
 			);
-			path = Snappy;
+			name = SwipeableViewController;
+			sourceTree = "<group>";
+		};
+		1458F5341C95FF3C00218D06 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				1458F5351C95FF6800218D06 /* CameraManagerProtocol.swift */,
+				1458F5371C95FF8800218D06 /* CameraManager.swift */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		1458F53A1C95FFAD00218D06 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				1458F53B1C95FFCC00218D06 /* SnappyAPI.swift */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		3F8CEDECA99155A97602BCDD /* Pods */ = {
@@ -214,8 +266,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1458F52E1C95FA8900218D06 /* VerticalScrollViewController.swift in Sources */,
+				1458F5321C95FECB00218D06 /* PhotoViewController.swift in Sources */,
+				1458F5361C95FF6800218D06 /* CameraManagerProtocol.swift in Sources */,
 				1458F51A1C95F81200218D06 /* AppDelegate.swift in Sources */,
+				1458F5381C95FF8800218D06 /* CameraManager.swift in Sources */,
 				1458F52C1C95FA7800218D06 /* SnapContainerViewController.swift in Sources */,
+				1458F53C1C95FFCC00218D06 /* SnappyAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Snappy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.droidsonroids.Snappy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -340,6 +397,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Snappy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.droidsonroids.Snappy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
