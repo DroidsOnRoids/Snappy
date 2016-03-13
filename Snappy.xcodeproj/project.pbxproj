@@ -17,6 +17,7 @@
 		1458F5361C95FF6800218D06 /* CameraManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F5351C95FF6800218D06 /* CameraManagerProtocol.swift */; };
 		1458F5381C95FF8800218D06 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F5371C95FF8800218D06 /* CameraManager.swift */; };
 		1458F53C1C95FFCC00218D06 /* SnappyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F53B1C95FFCC00218D06 /* SnappyAPI.swift */; };
+		1458F53E1C96015B00218D06 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F53D1C96015B00218D06 /* ImagesViewController.swift */; };
 		D4DFB992C8CC18C582846F63 /* Pods_Snappy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3E0D58D147947ED0FCB4CE /* Pods_Snappy.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		1458F5351C95FF6800218D06 /* CameraManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManagerProtocol.swift; sourceTree = "<group>"; };
 		1458F5371C95FF8800218D06 /* CameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		1458F53B1C95FFCC00218D06 /* SnappyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnappyAPI.swift; sourceTree = "<group>"; };
+		1458F53D1C96015B00218D06 /* ImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
 		1714F51530166E8B731829C1 /* Pods-Snappy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snappy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Snappy/Pods-Snappy.debug.xcconfig"; sourceTree = "<group>"; };
 		8C3E0D58D147947ED0FCB4CE /* Pods_Snappy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snappy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0FF4A0F9D31E96AC7C33762 /* Pods-Snappy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snappy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Snappy/Pods-Snappy.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				1458F5311C95FECB00218D06 /* PhotoViewController.swift */,
+				1458F53D1C96015B00218D06 /* ImagesViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			files = (
 				1458F52E1C95FA8900218D06 /* VerticalScrollViewController.swift in Sources */,
 				1458F5321C95FECB00218D06 /* PhotoViewController.swift in Sources */,
+				1458F53E1C96015B00218D06 /* ImagesViewController.swift in Sources */,
 				1458F5361C95FF6800218D06 /* CameraManagerProtocol.swift in Sources */,
 				1458F51A1C95F81200218D06 /* AppDelegate.swift in Sources */,
 				1458F5381C95FF8800218D06 /* CameraManager.swift in Sources */,
