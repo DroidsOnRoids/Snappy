@@ -18,12 +18,26 @@
 		1458F5381C95FF8800218D06 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F5371C95FF8800218D06 /* CameraManager.swift */; };
 		1458F53C1C95FFCC00218D06 /* SnappyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F53B1C95FFCC00218D06 /* SnappyAPI.swift */; };
 		1458F53E1C96015B00218D06 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F53D1C96015B00218D06 /* ImagesViewController.swift */; };
+		510A4B47A892B9B43002987D /* Pods_Snappy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB1BAAF247DC8AE8CB8F3FA /* Pods_Snappy.framework */; };
 		B03933191C961B03005485E7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03933171C961B03005485E7 /* Alamofire.framework */; };
 		B039331A1C961B03005485E7 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03933181C961B03005485E7 /* AlamofireImage.framework */; };
-		D4DFB992C8CC18C582846F63 /* Pods_Snappy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3E0D58D147947ED0FCB4CE /* Pods_Snappy.framework */; };
+		C7311E24C5CEBF584098DD00 /* Pods_SnappyAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9B4CE98120A2D83ECB1ABB /* Pods_SnappyAPITests.framework */; };
+		E52C0FE21DACDA32006B017E /* SnappyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C0FE11DACDA32006B017E /* SnappyAPITests.swift */; };
+		E5C33F361DAD10AC00AA3EB5 /* thunder.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C33F351DAD10AC00AA3EB5 /* thunder.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E52C0FE41DACDA32006B017E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1458F50E1C95F81200218D06 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1458F5151C95F81200218D06;
+			remoteInfo = Snappy;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0BDD967B69F2E5D325E3803F /* Pods-SnappyAPITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnappyAPITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SnappyAPITests/Pods-SnappyAPITests.release.xcconfig"; sourceTree = "<group>"; };
 		1458F5161C95F81200218D06 /* Snappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1458F5191C95F81200218D06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1458F51E1C95F81200218D06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,11 +51,17 @@
 		1458F5371C95FF8800218D06 /* CameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		1458F53B1C95FFCC00218D06 /* SnappyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnappyAPI.swift; sourceTree = "<group>"; };
 		1458F53D1C96015B00218D06 /* ImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
-		1714F51530166E8B731829C1 /* Pods-Snappy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snappy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Snappy/Pods-Snappy.debug.xcconfig"; sourceTree = "<group>"; };
-		8C3E0D58D147947ED0FCB4CE /* Pods_Snappy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snappy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A9B4CE98120A2D83ECB1ABB /* Pods_SnappyAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SnappyAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CB1BAAF247DC8AE8CB8F3FA /* Pods_Snappy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snappy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4F428CF08A3ABC82CEF4087 /* Pods-Snappy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snappy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Snappy/Pods-Snappy.release.xcconfig"; sourceTree = "<group>"; };
 		B03933171C961B03005485E7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
 		B03933181C961B03005485E7 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = "Pods/../build/Debug-iphoneos/AlamofireImage.framework"; sourceTree = "<group>"; };
-		F0FF4A0F9D31E96AC7C33762 /* Pods-Snappy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snappy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Snappy/Pods-Snappy.release.xcconfig"; sourceTree = "<group>"; };
+		C525048BC1526468B8B97500 /* Pods-SnappyAPITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnappyAPITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SnappyAPITests/Pods-SnappyAPITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E52C0FDF1DACDA32006B017E /* SnappyAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnappyAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E52C0FE11DACDA32006B017E /* SnappyAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappyAPITests.swift; sourceTree = "<group>"; };
+		E52C0FE31DACDA32006B017E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5C33F351DAD10AC00AA3EB5 /* thunder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thunder.png; sourceTree = "<group>"; };
+		ED02CEFE0ECCE9A052CC0288 /* Pods-Snappy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snappy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Snappy/Pods-Snappy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +71,15 @@
 			files = (
 				B03933191C961B03005485E7 /* Alamofire.framework in Frameworks */,
 				B039331A1C961B03005485E7 /* AlamofireImage.framework in Frameworks */,
-				D4DFB992C8CC18C582846F63 /* Pods_Snappy.framework in Frameworks */,
+				510A4B47A892B9B43002987D /* Pods_Snappy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E52C0FDC1DACDA32006B017E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7311E24C5CEBF584098DD00 /* Pods_SnappyAPITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,9 +90,10 @@
 			isa = PBXGroup;
 			children = (
 				1458F5181C95F81200218D06 /* Snappy */,
+				E52C0FE01DACDA32006B017E /* SnappyAPITests */,
 				1458F5171C95F81200218D06 /* Products */,
-				3F8CEDECA99155A97602BCDD /* Pods */,
 				9ADF78E6010D41B1A87137B5 /* Frameworks */,
+				AC0C95CCC3A5712CBA63EBDB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				1458F5161C95F81200218D06 /* Snappy.app */,
+				E52C0FDF1DACDA32006B017E /* SnappyAPITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,23 +165,36 @@
 			name = API;
 			sourceTree = "<group>";
 		};
-		3F8CEDECA99155A97602BCDD /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1714F51530166E8B731829C1 /* Pods-Snappy.debug.xcconfig */,
-				F0FF4A0F9D31E96AC7C33762 /* Pods-Snappy.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		9ADF78E6010D41B1A87137B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				B03933171C961B03005485E7 /* Alamofire.framework */,
 				B03933181C961B03005485E7 /* AlamofireImage.framework */,
-				8C3E0D58D147947ED0FCB4CE /* Pods_Snappy.framework */,
+				8CB1BAAF247DC8AE8CB8F3FA /* Pods_Snappy.framework */,
+				2A9B4CE98120A2D83ECB1ABB /* Pods_SnappyAPITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC0C95CCC3A5712CBA63EBDB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ED02CEFE0ECCE9A052CC0288 /* Pods-Snappy.debug.xcconfig */,
+				A4F428CF08A3ABC82CEF4087 /* Pods-Snappy.release.xcconfig */,
+				C525048BC1526468B8B97500 /* Pods-SnappyAPITests.debug.xcconfig */,
+				0BDD967B69F2E5D325E3803F /* Pods-SnappyAPITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E52C0FE01DACDA32006B017E /* SnappyAPITests */ = {
+			isa = PBXGroup;
+			children = (
+				E52C0FE11DACDA32006B017E /* SnappyAPITests.swift */,
+				E5C33F351DAD10AC00AA3EB5 /* thunder.png */,
+				E52C0FE31DACDA32006B017E /* Info.plist */,
+			);
+			path = SnappyAPITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,12 +204,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1458F5281C95F81200218D06 /* Build configuration list for PBXNativeTarget "Snappy" */;
 			buildPhases = (
-				D67B56BCE64C3ADF901137FC /* Check Pods Manifest.lock */,
+				4FEEF44F480C8EF24083DCD9 /* [CP] Check Pods Manifest.lock */,
 				1458F5121C95F81200218D06 /* Sources */,
 				1458F5131C95F81200218D06 /* Frameworks */,
 				1458F5141C95F81200218D06 /* Resources */,
-				335DD5364E96D0CCBCEB8E7C /* Embed Pods Frameworks */,
-				8DE390EF218FD897079EE35A /* Copy Pods Resources */,
+				1EFFC66570DCCD403E02C0C8 /* [CP] Embed Pods Frameworks */,
+				A0B02EA690A84073A3436F01 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -177,18 +220,47 @@
 			productReference = 1458F5161C95F81200218D06 /* Snappy.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E52C0FDE1DACDA32006B017E /* SnappyAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E52C0FE81DACDA32006B017E /* Build configuration list for PBXNativeTarget "SnappyAPITests" */;
+			buildPhases = (
+				390389F04DCBB5F1BEA9A992 /* [CP] Check Pods Manifest.lock */,
+				E52C0FDB1DACDA32006B017E /* Sources */,
+				E52C0FDC1DACDA32006B017E /* Frameworks */,
+				E52C0FDD1DACDA32006B017E /* Resources */,
+				1BED46BC3ECD23AF89594F02 /* [CP] Embed Pods Frameworks */,
+				AFCAD1246F6051E92337E79E /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E52C0FE51DACDA32006B017E /* PBXTargetDependency */,
+			);
+			name = SnappyAPITests;
+			productName = SnappyAPITests;
+			productReference = E52C0FDF1DACDA32006B017E /* SnappyAPITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1458F50E1C95F81200218D06 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Droids On Roids";
 				TargetAttributes = {
 					1458F5151C95F81200218D06 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 27FAFL2WP5;
+						LastSwiftMigration = 0800;
+					};
+					E52C0FDE1DACDA32006B017E = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 27FAFL2WP5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1458F5151C95F81200218D06;
 					};
 				};
 			};
@@ -206,6 +278,7 @@
 			projectRoot = "";
 			targets = (
 				1458F5151C95F81200218D06 /* Snappy */,
+				E52C0FDE1DACDA32006B017E /* SnappyAPITests */,
 			);
 		};
 /* End PBXProject section */
@@ -221,17 +294,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E52C0FDD1DACDA32006B017E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5C33F361DAD10AC00AA3EB5 /* thunder.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		335DD5364E96D0CCBCEB8E7C /* Embed Pods Frameworks */ = {
+		1BED46BC3ECD23AF89594F02 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SnappyAPITests/Pods-SnappyAPITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1EFFC66570DCCD403E02C0C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,14 +335,44 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Snappy/Pods-Snappy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8DE390EF218FD897079EE35A /* Copy Pods Resources */ = {
+		390389F04DCBB5F1BEA9A992 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4FEEF44F480C8EF24083DCD9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A0B02EA690A84073A3436F01 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,19 +380,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Snappy/Pods-Snappy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D67B56BCE64C3ADF901137FC /* Check Pods Manifest.lock */ = {
+		AFCAD1246F6051E92337E79E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SnappyAPITests/Pods-SnappyAPITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -287,7 +413,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E52C0FDB1DACDA32006B017E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E52C0FE21DACDA32006B017E /* SnappyAPITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E52C0FE51DACDA32006B017E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1458F5151C95F81200218D06 /* Snappy */;
+			targetProxy = E52C0FE41DACDA32006B017E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1458F51D1C95F81200218D06 /* Main.storyboard */ = {
@@ -392,35 +534,81 @@
 		};
 		1458F5291C95F81200218D06 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1714F51530166E8B731829C1 /* Pods-Snappy.debug.xcconfig */;
+			baseConfigurationReference = ED02CEFE0ECCE9A052CC0288 /* Pods-Snappy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 27FAFL2WP5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Snappy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.droidsonroids.Snappy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		1458F52A1C95F81200218D06 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0FF4A0F9D31E96AC7C33762 /* Pods-Snappy.release.xcconfig */;
+			baseConfigurationReference = A4F428CF08A3ABC82CEF4087 /* Pods-Snappy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 27FAFL2WP5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Snappy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.droidsonroids.Snappy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		E52C0FE61DACDA32006B017E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C525048BC1526468B8B97500 /* Pods-SnappyAPITests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 27FAFL2WP5;
+				INFOPLIST_FILE = SnappyAPITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.droidsonroids.SnappyAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snappy.app/Snappy";
+			};
+			name = Debug;
+		};
+		E52C0FE71DACDA32006B017E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0BDD967B69F2E5D325E3803F /* Pods-SnappyAPITests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 27FAFL2WP5;
+				INFOPLIST_FILE = SnappyAPITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.droidsonroids.SnappyAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snappy.app/Snappy";
 			};
 			name = Release;
 		};
@@ -441,6 +629,15 @@
 			buildConfigurations = (
 				1458F5291C95F81200218D06 /* Debug */,
 				1458F52A1C95F81200218D06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E52C0FE81DACDA32006B017E /* Build configuration list for PBXNativeTarget "SnappyAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E52C0FE61DACDA32006B017E /* Debug */,
+				E52C0FE71DACDA32006B017E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
