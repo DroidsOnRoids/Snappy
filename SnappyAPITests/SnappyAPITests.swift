@@ -14,6 +14,7 @@ class SnappyAPITests: XCTestCase {
     
     func testGetAllImages() {
         let expectationGetAllImages = self.expectation(description: "getting all images")
+        
         SnapchatAPI.getImages { (response) in
             switch response {
             case .success(let response):
@@ -25,8 +26,8 @@ class SnappyAPITests: XCTestCase {
                 XCTAssert(false)
             }
         }
-        waitForExpectations(timeout: 5.0, handler: nil)
         
+        waitForExpectations(timeout: 5.0, handler: nil)
     }
     
     func testUploadImage() {
@@ -55,9 +56,10 @@ class SnappyAPITests: XCTestCase {
     func testDownloadImage() {
         let expectation = self.expectation(description: "download image")
         
-        SnapchatAPI.downloadImage("https://snappytestapp.herokuapp.com/images/all/1_2016.10.11_10.40.24_0ada5365e31503be708927e54b9988a5fde546b8.jpg") { result in
-            
-            XCTAssertTrue(result.value!.size.width == 512)
+        let imageURL = "https://snappytestapp.herokuapp.com/images/all/1_2016.10.11_10.40.24_0ada5365e31503be708927e54b9988a5fde546b8.jpg"
+       
+        SnapchatAPI.downloadImage(imageURL) { result in
+            XCTAssertTrue(result.value!.size.width == 512.0)
             expectation.fulfill()
         }
         
