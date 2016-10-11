@@ -11,9 +11,9 @@ import UIKit
 
 protocol CameraManagerProtocol {
     
-    static func generateCameraPreview(previewSize size: CGSize, completion: (sessionPreviewView: UIView?) -> ())
-    static func switchCamera(completion: (sessionPreviewView: UIView?) -> ())
-    static func toggleFlashMode(bool: Bool)
-    static func takePhoto(completion: (UIImage?) -> ())
+    static func generateCameraPreview(previewSize size: CGSize, completion: @escaping (_ sessionPreviewView: UIView?) -> ())
+    static func switchCamera(_ completion: @escaping (_ sessionPreviewView: UIView?) -> ()) 
+    static func toggleFlashMode(_ bool: Bool)
+    static func takePhoto(_ completion: @escaping (UIImage?) -> ())
     
 }
