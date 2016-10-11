@@ -5,7 +5,7 @@ target 'Snappy' do
    pod 'AlamofireImage', :git => 'https://github.com/Alamofire/AlamofireImage'
 end
 
-target 'SnappyAPITests’ do
+target 'SnappyAPITests' do
    pod 'AlamofireImage', :git => 'https://github.com/Alamofire/AlamofireImage'
 end
 
