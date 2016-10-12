@@ -109,9 +109,7 @@ struct SnapchatAPI {
                         print("Error: \(error)")
                     }
                 }
-                upload.responseJSON { response in
-                   responseJSONClosure(response)
-                }
+                upload.responseJSON(completionHandler: responseJSONClosure)
             case .failure(_):
                 completion(SnapchatAPIConstants.Error.alamofireEncodingError)
             }
@@ -119,11 +117,7 @@ struct SnapchatAPI {
         
         // Using Alamofire we will upload the data on a server and return
         // response with completion block
-        Alamofire.upload(multipartFormData: { (multipartData) in
-            multipartDataClosure(multipartData)
-        }, to: SnapchatAPIConstants.URL.uploadImage) { (result) in
-            uploadClosure(result)
-        }
+        Alamofire.upload(multipartFormData: multipartDataClosure, to: SnapchatAPIConstants.URL.uploadImage, encodingCompletion: uploadClosure)
     }
     
     /// Uploads image, but only to specific user
