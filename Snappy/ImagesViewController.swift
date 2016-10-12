@@ -35,21 +35,21 @@ class ImagesViewController: UITableViewController {
     
     func pullToRefreshSetup() {
         refreshControl = UIRefreshControl()
-        refreshControl?.backgroundColor = UIColor.whiteColor()
-        refreshControl?.tintColor = UIColor.blackColor()
+        refreshControl?.backgroundColor = .white
+        refreshControl?.tintColor = .black
         refreshControl?.addTarget(self,
-            action: Selector("refreshImages"),
-            forControlEvents: UIControlEvents.ValueChanged)
+            action: #selector(ImagesViewController.refreshImages),
+            for: UIControlEvents.valueChanged)
     }
     
     func refreshImages() {
         // Every time we open the controller, reload images list
         SnapchatAPI.getImages { [weak self] result in
             // If we correctly did fetch the images
-            guard case .Success(let response) = result else { return }
+            guard case .success(let response) = result else { return }
             
             // Now make sure the response is an array of dicts
-            guard let imageArray = response["images"] as? [[String: AnyObject]] else { return }
+            guard let responseDict = response as? [String: Any], let imageArray = responseDict["images"] as? [[String: Any]] else { return }
             
             // Instantiate new array that will be our data source
             var newImages = [String]()
@@ -73,14 +73,14 @@ class ImagesViewController: UITableViewController {
         }
     }
  
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(imageCellIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: imageCellIdentifier, for: indexPath)
         cell.textLabel?.text = images[indexPath.row]
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return images.count
     }
     

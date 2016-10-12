@@ -16,8 +16,8 @@ struct SnapchatAPIConstants {
     static let userId = 1;
     
     struct URL {
-        private static let base = "https://serene-escarpment-58247.herokuapp.com"
-        private static let imagesEndpoint = {
+        fileprivate static let base = "https://snappytestapp.herokuapp.com"
+        fileprivate static let imagesEndpoint = {
             return base + "/images"
         }()
         
@@ -33,17 +33,17 @@ struct SnapchatAPIConstants {
     }
     
     struct Method {
-        static let getImages = Alamofire.Method.GET
-        static let uploadImage = Alamofire.Method.POST
-        static let downloadImage = Alamofire.Method.GET
+        static let getImages: HTTPMethod = .get
+        static let uploadImage: HTTPMethod = .post
+        static let downloadImage: HTTPMethod = .get
     }
     
     struct Error {
-        static func alamofireResultError(withMessage message: String) -> Result<AnyObject, NSError> {
+        static func alamofireResultError(withMessage message: String) -> Result<Any> {
             let error = NSError(domain: "com.alamofire",
                 code: -100,
                 userInfo: [NSLocalizedDescriptionKey: message])
-            return Result<AnyObject, NSError>.Failure(error)
+            return Result.failure(error)
         }
         
         static let alamofireEncodingError = {
@@ -65,103 +65,92 @@ struct SnapchatAPIConstants {
 /// Main struct to SnapchatAPI with uploading/downloading
 struct SnapchatAPI {
     
-    typealias APIResult = Result<AnyObject, NSError>
-    typealias APICompletionHandler = APIResult -> Void
-    typealias APIImageCompletionHandler = Result<UIImage, NSError> -> Void
-    typealias APIMultipartFormData = MultipartFormData -> Void
-    
+    typealias APIResult = Result<Any>
+    typealias APICompletionHandler = (APIResult) -> Void
+    typealias APIImageCompletionHandler = (Result<UIImage>) -> Void
+    typealias APIMultipartFormData = (MultipartFormData) -> Void
     /// Uploads image and will be send to everyone
-    static func upload(image image: UIImage, multipartFormData: APIMultipartFormData? = nil, completion: APICompletionHandler? = nil) {
+    static func upload(image: UIImage, multipartFormData: APIMultipartFormData? = nil,  completion: @escaping APICompletionHandler ) {
         // We transform our image to data that we can send on server.
         // Here we have 80% compression quality, which is 0.8 by default,
         // you can change it by specifying parameter in toData() function.
         // We use guard to be sure that our image can be represented as
         // NSData.
+        
+        
         guard let imageData = image.toData() else { return }
+        
+        let multipartDataClosure = { (multipartData: MultipartFormData) in
+            multipartData.append(imageData, withName: SnapchatAPIConstants.Parameters.imageFile, fileName:  "file.jpg", mimeType: "image/jpeg")
+            multipartData.append("\(SnapchatAPIConstants.userId)".data(using: .utf8)!, withName: SnapchatAPIConstants.Parameters.fromUserID)
+        }
+        
+        let responseJSONClosure = { (response: DataResponse<Any>) in
+            if let statusCode = response.response?.statusCode , 400...510 ~= statusCode {
+                if let response = response.result.value as? [String: AnyObject] {
+                    if let message = response["error"] as? String {
+                        completion(SnapchatAPIConstants.Error.alamofireResultError(withMessage: message))
+                    } else {
+                        completion(SnapchatAPIConstants.Error.alamofireUnknownError)
+                    }
+                }
+            }
+            completion(response.result)
+        }
+        
+        let uploadClosure = { (result: SessionManager.MultipartFormDataEncodingResult) in
+            switch result {
+            case .success(let upload, _, _):
+                upload.responseData { response in
+                    switch response.result {
+                    case .success(let data):
+                        print("Success: \(String(data: data, encoding: .utf8))")
+                    case .failure(let error):
+                        print("Error: \(error)")
+                    }
+                }
+                upload.responseJSON(completionHandler: responseJSONClosure)
+            case .failure(_):
+                completion(SnapchatAPIConstants.Error.alamofireEncodingError)
+            }
+        }
         
         // Using Alamofire we will upload the data on a server and return
         // response with completion block
-        Alamofire.upload(SnapchatAPIConstants.Method.uploadImage,
-            SnapchatAPIConstants.URL.uploadImage,
-            multipartFormData: { multipartData in
-                multipartData.appendBodyPart(data: imageData,
-                    name: SnapchatAPIConstants.Parameters.imageFile,
-                    fileName: "file.jpg",
-                    mimeType: "image/jpeg"
-                )
-                multipartData.appendBodyPart(
-                    data: "\(SnapchatAPIConstants.userId)".dataUsingEncoding(NSUTF8StringEncoding)!,
-                    name: SnapchatAPIConstants.Parameters.fromUserID
-                )
-                multipartFormData?(multipartData)
-            }) { result in
-                switch result {
-                case .Success(let upload, _, _):
-                    upload.responseData { response in
-                        switch response.result {
-                        case .Success(let data):
-                            print("Success: \(String(data: data, encoding: NSUTF8StringEncoding))")
-                        case .Failure(let error):
-                            print("Error: \(error)")
-                        }
-                    }
-                    upload.responseJSON { response in
-                        var result: APIResult!
-                        if let statusCode = response.response?.statusCode where 400...510 ~= statusCode {
-                            if let message = response.result.value?["error"] as? String {
-                                result = SnapchatAPIConstants.Error.alamofireResultError(withMessage: message)
-                            } else {
-                                result = SnapchatAPIConstants.Error.alamofireUnknownError
-                            }
-                        } else {
-                            result = response.result
-                        }
-                        
-                        completion?(result)
-                    }
-                case .Failure(_):
-                    completion?(SnapchatAPIConstants.Error.alamofireEncodingError)
-                }
-        }
+        Alamofire.upload(multipartFormData: multipartDataClosure, to: SnapchatAPIConstants.URL.uploadImage, encodingCompletion: uploadClosure)
     }
     
     /// Uploads image, but only to specific user
-    static func upload(image image: UIImage, toUser userId: Int, completion: APICompletionHandler) {
+    static func upload(image: UIImage, toUser userId: Int, completion: @escaping APICompletionHandler) {
         let multipartFormData: APIMultipartFormData = { multipartData in
-            multipartData.appendBodyPart(data: "\(userId)".dataUsingEncoding(NSUTF8StringEncoding)!,
-                name: SnapchatAPIConstants.Parameters.toUserID
-            )
+            multipartData.append("\(userId)".data(using: .utf8)!, withName: SnapchatAPIConstants.Parameters.toUserID)
         }
         upload(image: image, multipartFormData: multipartFormData, completion: completion)
     }
     
     /// Fetch images that were sent to everyone
-    static func getImages(parameters parameters: [String: AnyObject]? = nil, completion: APICompletionHandler) {
-        Alamofire
-            .request(SnapchatAPIConstants.Method.getImages, SnapchatAPIConstants.URL.getImages, parameters: parameters)
-            .responseJSON { response in
-                completion(response.result)
+    static func getImages(parameters: [String: AnyObject]? = nil, completion: @escaping APICompletionHandler) {
+        Alamofire.request(SnapchatAPIConstants.URL.getImages).responseJSON { response in
+            completion(response.result)
         }
     }
     
     /// Fetch images that were sent to you OR to everyone
-    static func getImages(forUser userId: Int, completion: APICompletionHandler) {
-        getImages(parameters: [SnapchatAPIConstants.Parameters.toUserID: userId], completion: completion)
+    static func getImages(forUser userId: Int, completion: @escaping APICompletionHandler) {
+        getImages(parameters: [SnapchatAPIConstants.Parameters.toUserID: userId as AnyObject], completion: completion)
     }
     
     /// Download image with url
-    static func downloadImage(url: String, completionHandler: APIImageCompletionHandler) {
+    static func downloadImage(_ url: String, completionHandler: @escaping APIImageCompletionHandler) {
         Alamofire
-            .request(SnapchatAPIConstants.Method.downloadImage, url)
-            .responseImage { response in
-                completionHandler(response.result)
+            .request(url, method: SnapchatAPIConstants.Method.downloadImage).responseImage{ (response) in
+            completionHandler(response.result)
         }
     }
-    
 }
 
 extension UIImage {
-    func toData(withCompressQuality compressQuality: CGFloat = 0.8) -> NSData? {
-        return UIImageJPEGRepresentation(self, compressQuality)
+    func toData(withCompressQuality compressQuality: CGFloat = 0.8) -> Data? {
+        return UIImageJPEGRepresentation(self, compressQuality) as Data?
     }
 }

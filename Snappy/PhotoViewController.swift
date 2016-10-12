@@ -14,8 +14,8 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var switchCameraButton: UIButton!
     @IBOutlet weak var flashButton: UIButton!
     
-    private var currentFlashMode: Bool = false
-    private let screenFrame = UIScreen.mainScreen().bounds
+    fileprivate var currentFlashMode = false
+    fileprivate let screenFrame = UIScreen.main.bounds
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class PhotoViewController: UIViewController {
     }
     
     func viewDidLoadSetup() {
-        let previewDimension = CGSize(width: CGRectGetWidth(screenFrame), height: CGRectGetHeight(screenFrame))
+        let previewDimension = CGSize(width: screenFrame.width, height: screenFrame.height)
         
         CameraManager.generateCameraPreview(previewSize: previewDimension) { [unowned self] sessionPreview in
             self.insertCameraPreview(sessionPreview)
@@ -37,14 +37,14 @@ class PhotoViewController: UIViewController {
         firstSubview.removeFromSuperview()
     }
     
-    func insertCameraPreview(generatedPreview: UIView?) {
-        guard let preview = generatedPreview, firstSubview = view.subviews.first else { return }
+    func insertCameraPreview(_ generatedPreview: UIView?) {
+        guard let preview = generatedPreview, let firstSubview = view.subviews.first else { return }
         view.insertSubview(preview, belowSubview: firstSubview)
     }
     
     func hidePhoto() {
         guard let lastSubview = view.subviews.last else { return }
-        UIView.animateWithDuration(1.0,
+        UIView.animate(withDuration: 1.0,
             animations: {
                 lastSubview.alpha = 0.0
             },
@@ -57,24 +57,24 @@ class PhotoViewController: UIViewController {
     
 // MARK: Actions
     
-    @IBAction func takePhotoButtonAction(sender: AnyObject) {
+    @IBAction func takePhotoButtonAction(_ sender: AnyObject) {
         CameraManager.takePhoto { photo in
             guard let image = photo else { return }
             let imageView  = UIImageView(frame: CGRect(
                 x: 0.0,
                 y: 0.0,
-                width: CGRectGetWidth(self.screenFrame),
-                height: CGRectGetHeight(self.screenFrame)))
-            imageView.contentMode = .ScaleAspectFill
+                width: self.screenFrame.width,
+                height: self.screenFrame.height))
+            imageView.contentMode = .scaleAspectFill
             imageView.image = image
             
             self.view.addSubview(imageView)
             
-            NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "hidePhoto", userInfo: nil, repeats: false)
+            Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(PhotoViewController.hidePhoto), userInfo: nil, repeats: false)
         }
     }
     
-    @IBAction func switchCameraButtonAction(sender: AnyObject) {
+    @IBAction func switchCameraButtonAction(_ sender: AnyObject) {
         removeCameraPreview()
         
         CameraManager.switchCamera { [unowned self] sessionPreview in
@@ -82,9 +82,9 @@ class PhotoViewController: UIViewController {
         }
     }
     
-    @IBAction func flashButtonAction(sender: AnyObject) {
+    @IBAction func flashButtonAction(_ sender: AnyObject) {
         currentFlashMode = !currentFlashMode
-        flashButton.setImage(UIImage(named: currentFlashMode ? "FlashButtonImage" : "FlashOffButtonImage"), forState: .Normal)
+        flashButton.setImage(UIImage(named: currentFlashMode ? "FlashButtonImage" : "FlashOffButtonImage"), for: .normal)
         
         CameraManager.toggleFlashMode(currentFlashMode)
     }

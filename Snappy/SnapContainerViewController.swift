@@ -24,7 +24,7 @@ class SnapContainerViewController: UIViewController {
     var scrollView: UIScrollView!
     var delegate: SnapContainerViewControllerDelegate?
     
-    class func containerViewWith(leftVC: UIViewController, middleVC: UIViewController, rightVC: UIViewController, topVC: UIViewController) -> SnapContainerViewController {
+    class func containerViewWith(_ leftVC: UIViewController, middleVC: UIViewController, rightVC: UIViewController, topVC: UIViewController) -> SnapContainerViewController {
         let container = SnapContainerViewController()
         container.leftVc = leftVC
         container.middleVc = middleVC
@@ -33,7 +33,7 @@ class SnapContainerViewController: UIViewController {
         return container
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -43,16 +43,16 @@ class SnapContainerViewController: UIViewController {
         setupHorizontalScrollView()
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return navigationController?.navigationBarHidden == true
+    override var prefersStatusBarHidden : Bool {
+        return navigationController?.isNavigationBarHidden == true
     }
     
-    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
-        return UIStatusBarAnimation.Fade
+    override var preferredStatusBarUpdateAnimation : UIStatusBarAnimation {
+        return UIStatusBarAnimation.fade
     }
     
     func setupVerticalScrollView() {
@@ -63,37 +63,37 @@ class SnapContainerViewController: UIViewController {
     func setupHorizontalScrollView() {
         
         scrollView = UIScrollView()
-        scrollView.pagingEnabled = true
+        scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.bounces = false
         scrollView.delegate = self
         
-        self.scrollView!.frame = CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
-        self.view.addSubview(scrollView)
+        scrollView.frame = CGRect(x: view.bounds.origin.x, y: view.bounds.origin.y, width: view.bounds.width, height: view.bounds.height)
+        view.addSubview(scrollView)
         
-        let scrollWidth: CGFloat  = 3 * CGRectGetWidth(self.view.bounds)
-        let scrollHeight: CGFloat  = CGRectGetHeight(self.view.bounds)
-        self.scrollView!.contentSize = CGSizeMake(scrollWidth, scrollHeight)
+        let scrollWidth: CGFloat  = 3 * view.bounds.width
+        let scrollHeight: CGFloat  = view.bounds.height
+        scrollView.contentSize = CGSize(width: scrollWidth, height: scrollHeight)
         
-        leftVc.view.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
-        middleVertScrollVc.view.frame = CGRectMake(CGRectGetWidth(self.view.bounds), 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
-        rightVc.view.frame = CGRectMake(2*CGRectGetWidth(self.view.bounds), 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
+        leftVc.view.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+        middleVertScrollVc.view.frame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
+        rightVc.view.frame = CGRect(x: 2 * view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
         
-        self.addChildViewController(leftVc)
-        self.scrollView!.addSubview(leftVc.view)
-        leftVc.didMoveToParentViewController(self)
+        addChildViewController(leftVc)
+        scrollView.addSubview(leftVc.view)
+        leftVc.didMove(toParentViewController: self)
         
-        self.addChildViewController(middleVertScrollVc)
-        self.scrollView!.addSubview(middleVertScrollVc.view)
-        middleVertScrollVc.didMoveToParentViewController(self)
+        addChildViewController(middleVertScrollVc)
+        scrollView.addSubview(middleVertScrollVc.view)
+        middleVertScrollVc.didMove(toParentViewController: self)
         
-        self.addChildViewController(rightVc)
-        self.scrollView!.addSubview(rightVc.view)
-        self.scrollView!.sendSubviewToBack(rightVc.view)
-        rightVc.didMoveToParentViewController(self)
+        addChildViewController(rightVc)
+        scrollView.addSubview(rightVc.view)
+        scrollView.sendSubview(toBack: rightVc.view)
+        rightVc.didMove(toParentViewController: self)
         
-        self.scrollView!.contentOffset.x = middleVertScrollVc.view.frame.origin.x
-        self.scrollView!.delegate = self;
+        scrollView.contentOffset.x = middleVertScrollVc.view.frame.origin.x
+        scrollView.delegate = self;
     }
     
 }
@@ -101,24 +101,24 @@ class SnapContainerViewController: UIViewController {
 // MARK: UIScrollView Delegate
 
 extension SnapContainerViewController: UIScrollViewDelegate {
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        self.initialContentOffset = scrollView.contentOffset
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        initialContentOffset = scrollView.contentOffset
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if delegate != nil && !delegate!.innerScrollViewShouldScroll() {
             // This is probably crazy movement: diagonal scrolling
             var newOffset = CGPoint()
             
             if (abs(scrollView.contentOffset.x) > abs(scrollView.contentOffset.y)) {
-                newOffset = CGPointMake(self.initialContentOffset.x, self.initialContentOffset.y)
+                newOffset = CGPoint(x: initialContentOffset.x, y: initialContentOffset.y)
             } else {
-                newOffset = CGPointMake(self.initialContentOffset.x, self.initialContentOffset.y)
+                newOffset = CGPoint(x: initialContentOffset.x, y: initialContentOffset.y)
             }
             
             // Setting the new offset to the scrollView makes it behave like a proper
             // directional lock, that allows you to scroll in only one direction at any given time
-            self.scrollView!.setContentOffset(newOffset,animated:  false)
+            scrollView.setContentOffset(newOffset,animated:  false)
         }
     }
 }

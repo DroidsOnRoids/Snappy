@@ -13,7 +13,7 @@ class VerticalScrollViewController: UIViewController, UIScrollViewDelegate {
     var middleVc: UIViewController!
     var scrollView: UIScrollView!
     
-    class func verticalScrollVcWith(middleVc: UIViewController, topVc: UIViewController) -> VerticalScrollViewController {
+    class func verticalScrollVcWith(_ middleVc: UIViewController, topVc: UIViewController) -> VerticalScrollViewController {
         let middleScrollVc = VerticalScrollViewController()
         middleScrollVc.middleVc = middleVc
         middleScrollVc.topVc = topVc
@@ -28,30 +28,30 @@ class VerticalScrollViewController: UIViewController, UIScrollViewDelegate {
     
     func setupScrollView() {
         scrollView = UIScrollView()
-        scrollView.pagingEnabled = true
+        scrollView.isPagingEnabled = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.bounces = false
         
-        self.scrollView!.frame = CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
-        self.view.addSubview(scrollView)
+        scrollView.frame = CGRect(x: view.bounds.origin.x, y: view.bounds.origin.y, width: view.bounds.width, height: view.bounds.height)
+        view.addSubview(scrollView)
         
-        let scrollWidth: CGFloat  = CGRectGetWidth(self.view.bounds)
-        let scrollHeight: CGFloat  = 2 * CGRectGetHeight(self.view.bounds)
-        self.scrollView!.contentSize = CGSizeMake(scrollWidth, scrollHeight)
+        let scrollWidth: CGFloat  = view.bounds.width
+        let scrollHeight: CGFloat  = 2 * view.bounds.height
+        scrollView.contentSize = CGSize(width: scrollWidth, height: scrollHeight)
         
-        topVc.view.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
-        middleVc.view.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds), CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
+        topVc.view.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+        middleVc.view.frame = CGRect(x: 0, y: view.bounds.height, width: view.bounds.width, height: view.bounds.height)
         
-        self.addChildViewController(middleVc)
-        self.scrollView!.addSubview(middleVc.view)
-        middleVc.didMoveToParentViewController(self)
+        addChildViewController(middleVc)
+        scrollView.addSubview(middleVc.view)
+        middleVc.didMove(toParentViewController: self)
         
-        self.addChildViewController(topVc)
-        self.scrollView!.addSubview(topVc.view)
-        topVc.didMoveToParentViewController(self)
+        addChildViewController(topVc)
+        scrollView.addSubview(topVc.view)
+        topVc.didMove(toParentViewController: self)
         
-        self.scrollView!.contentOffset.y = middleVc.view.frame.origin.y
-        self.scrollView!.delegate = self;
+        scrollView.contentOffset.y = middleVc.view.frame.origin.y
+        scrollView.delegate = self;
     }
     
 }
