@@ -35,8 +35,8 @@ class ImagesViewController: UITableViewController {
     
     func pullToRefreshSetup() {
         refreshControl = UIRefreshControl()
-        refreshControl?.backgroundColor = UIColor.white
-        refreshControl?.tintColor = UIColor.black
+        refreshControl?.backgroundColor = .white
+        refreshControl?.tintColor = .black
         refreshControl?.addTarget(self,
             action: #selector(ImagesViewController.refreshImages),
             for: UIControlEvents.valueChanged)
@@ -75,7 +75,7 @@ class ImagesViewController: UITableViewController {
  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: imageCellIdentifier, for: indexPath)
-        cell.textLabel?.text = images[(indexPath as NSIndexPath).row]
+        cell.textLabel?.text = images[indexPath.row]
         
         return cell
     }

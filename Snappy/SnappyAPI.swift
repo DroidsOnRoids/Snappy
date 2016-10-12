@@ -76,15 +76,29 @@ struct SnapchatAPI {
         // you can change it by specifying parameter in toData() function.
         // We use guard to be sure that our image can be represented as
         // NSData.
+        
+        
         guard let imageData = image.toData() else { return }
         
+        let multipartDataClosure = { (multipartData: MultipartFormData) in
+            multipartData.append(imageData, withName: SnapchatAPIConstants.Parameters.imageFile, fileName:  "file.jpg", mimeType: "image/jpeg")
+            multipartData.append("\(SnapchatAPIConstants.userId)".data(using: .utf8)!, withName: SnapchatAPIConstants.Parameters.fromUserID)
+        }
         
-        // Using Alamofire we will upload the data on a server and return
-        // response with completion block
-       Alamofire.upload(multipartFormData: { (multipartData) in
-        multipartData.append(imageData, withName: SnapchatAPIConstants.Parameters.imageFile, fileName:  "file.jpg", mimeType: "image/jpeg")
-        multipartData.append("\(SnapchatAPIConstants.userId)".data(using: .utf8)!, withName: SnapchatAPIConstants.Parameters.fromUserID)
-        }, to: SnapchatAPIConstants.URL.uploadImage) { (result) in
+        let responseJSONClosure = { (response: DataResponse<Any>) in
+            if let statusCode = response.response?.statusCode , 400...510 ~= statusCode {
+                if let response = response.result.value as? [String: AnyObject] {
+                    if let message = response["error"] as? String {
+                        completion(SnapchatAPIConstants.Error.alamofireResultError(withMessage: message))
+                    } else {
+                        completion(SnapchatAPIConstants.Error.alamofireUnknownError)
+                    }
+                }
+            }
+            completion(response.result)
+        }
+        
+        let uploadClosure = { (result: SessionManager.MultipartFormDataEncodingResult) in
             switch result {
             case .success(let upload, _, _):
                 upload.responseData { response in
@@ -95,22 +109,20 @@ struct SnapchatAPI {
                         print("Error: \(error)")
                     }
                 }
-                
                 upload.responseJSON { response in
-                    if let statusCode = response.response?.statusCode , 400...510 ~= statusCode {
-                        if let response = response.result.value as? [String: AnyObject] {
-                            if let message = response["error"] as? String {
-                                completion(SnapchatAPIConstants.Error.alamofireResultError(withMessage: message))
-                            } else {
-                                completion(SnapchatAPIConstants.Error.alamofireUnknownError)
-                            }
-                        }
-                    }
-                    completion(response.result)
+                   responseJSONClosure(response)
                 }
             case .failure(_):
                 completion(SnapchatAPIConstants.Error.alamofireEncodingError)
             }
+        }
+        
+        // Using Alamofire we will upload the data on a server and return
+        // response with completion block
+        Alamofire.upload(multipartFormData: { (multipartData) in
+            multipartDataClosure(multipartData)
+        }, to: SnapchatAPIConstants.URL.uploadImage) { (result) in
+            uploadClosure(result)
         }
     }
     

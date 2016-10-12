@@ -84,7 +84,7 @@ class PhotoViewController: UIViewController {
     
     @IBAction func flashButtonAction(_ sender: AnyObject) {
         currentFlashMode = !currentFlashMode
-        flashButton.setImage(UIImage(named: currentFlashMode ? "FlashButtonImage" : "FlashOffButtonImage"), for: UIControlState())
+        flashButton.setImage(UIImage(named: currentFlashMode ? "FlashButtonImage" : "FlashOffButtonImage"), for: .normal)
         
         CameraManager.toggleFlashMode(currentFlashMode)
     }

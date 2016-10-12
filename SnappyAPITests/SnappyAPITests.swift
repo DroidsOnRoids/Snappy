@@ -21,16 +21,16 @@ class SnappyAPITests: XCTestCase {
                 let responseDict = response as? [String: Any]
                 let imageArray = responseDict?["images"] as? [[String: Any]]
                 XCTAssertTrue(imageArray!.count > 0)
-                expectationGetAllImages.fulfill()
             case .failure(_):
                 XCTAssert(false)
             }
+            expectationGetAllImages.fulfill()
         }
         
         waitForExpectations(timeout: 5.0, handler: nil)
     }
     
-    func testUploadImage() {
+    func testAUploadImage() {
         let expectation = self.expectation(description: "upload image")
         
         let bundle = Bundle(for: self.classForCoder)
@@ -54,13 +54,24 @@ class SnappyAPITests: XCTestCase {
     }
     
     func testDownloadImage() {
-        let expectation = self.expectation(description: "download image")
+        let expectation = self.expectation(description: "get and download image")
         
-        let imageURL = "https://snappytestapp.herokuapp.com/images/all/1_2016.10.11_10.40.24_0ada5365e31503be708927e54b9988a5fde546b8.jpg"
-       
-        SnapchatAPI.downloadImage(imageURL) { result in
-            XCTAssertTrue(result.value!.size.width == 512.0)
-            expectation.fulfill()
+        SnapchatAPI.getImages { (response) in
+            switch response {
+            case .success(let response):
+                let responseDict = response as? [String: Any]
+                let imageArray = responseDict?["images"] as? [[String: Any]]
+               
+                let imageUrl = imageArray?[0]["url"] as? String
+                if let imageUrl = imageUrl {
+                    SnapchatAPI.downloadImage(imageUrl) { result in
+                        XCTAssertTrue(result.value!.size.width == 512.0)
+                        expectation.fulfill()
+                    }
+                }
+            case .failure(_):
+               XCTAssert(false)
+            }
         }
         
         waitForExpectations(timeout: 5.0, handler: nil)
