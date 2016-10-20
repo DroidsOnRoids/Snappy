@@ -41,8 +41,8 @@ struct SnapchatAPIConstants {
     struct Error {
         static func alamofireResultError(withMessage message: String) -> Result<Any> {
             let error = NSError(domain: "com.alamofire",
-                code: -100,
-                userInfo: [NSLocalizedDescriptionKey: message])
+                                code: -100,
+                                userInfo: [NSLocalizedDescriptionKey: message])
             return Result.failure(error)
         }
         
@@ -70,6 +70,7 @@ struct SnapchatAPI {
     typealias APIImageCompletionHandler = (Result<UIImage>) -> Void
     typealias APIMultipartFormData = (MultipartFormData) -> Void
     /// Uploads image and will be send to everyone
+    
     static func upload(image: UIImage, multipartFormData: APIMultipartFormData? = nil,  completion: @escaping APICompletionHandler ) {
         // We transform our image to data that we can send on server.
         // Here we have 80% compression quality, which is 0.8 by default,
@@ -144,7 +145,7 @@ struct SnapchatAPI {
     static func downloadImage(_ url: String, completionHandler: @escaping APIImageCompletionHandler) {
         Alamofire
             .request(url, method: SnapchatAPIConstants.Method.downloadImage).responseImage{ (response) in
-            completionHandler(response.result)
+                completionHandler(response.result)
         }
     }
 }
