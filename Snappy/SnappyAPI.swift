@@ -77,28 +77,44 @@ struct SnapchatAPI {
         // you can change it by specifying parameter in toData() function.
         // We use guard to be sure that our image can be represented as
         // NSData.
-        
-        
         guard let imageData = image.toData() else { return }
         
+        let multipartDataClosure = SnapchatAPI.prepareMultiPartDataClosure(image: imageData)
+        let responseJSONClosure = SnapchatAPI.preapreResponseJSONClosure(completionHandler: completion)
+       
+        let uploadClosure = SnapchatAPI.prepareUploadClosure(completionHandler: completion, responseJSONClosure: responseJSONClosure)
+        
+        // Using Alamofire we will upload the data on a server and return
+        // response with completion block
+        Alamofire.upload(multipartFormData: multipartDataClosure, to: SnapchatAPIConstants.URL.uploadImage, encodingCompletion: uploadClosure)
+    }
+    
+    static func prepareMultiPartDataClosure(image: Data) -> (MultipartFormData) -> () {
         let multipartDataClosure = { (multipartData: MultipartFormData) in
-            multipartData.append(imageData, withName: SnapchatAPIConstants.Parameters.imageFile, fileName:  "file.jpg", mimeType: "image/jpeg")
+            multipartData.append(image, withName: SnapchatAPIConstants.Parameters.imageFile, fileName:  "file.jpg", mimeType: "image/jpeg")
             multipartData.append("\(SnapchatAPIConstants.userId)".data(using: .utf8)!, withName: SnapchatAPIConstants.Parameters.fromUserID)
         }
-        
+        return multipartDataClosure
+    }
+    
+    static func preapreResponseJSONClosure(completionHandler: @escaping APICompletionHandler) -> (DataResponse<Any>) -> () {
         let responseJSONClosure = { (response: DataResponse<Any>) in
             if let statusCode = response.response?.statusCode , 400...510 ~= statusCode {
                 if let response = response.result.value as? [String: AnyObject] {
                     if let message = response["error"] as? String {
-                        completion(SnapchatAPIConstants.Error.alamofireResultError(withMessage: message))
+                        completionHandler(SnapchatAPIConstants.Error.alamofireResultError(withMessage: message))
                     } else {
-                        completion(SnapchatAPIConstants.Error.alamofireUnknownError)
+                        completionHandler(SnapchatAPIConstants.Error.alamofireUnknownError)
                     }
                 }
             }
-            completion(response.result)
+            completionHandler(response.result)
         }
         
+        return responseJSONClosure
+    }
+    
+    static func prepareUploadClosure(completionHandler: @escaping APICompletionHandler , responseJSONClosure: @escaping(DataResponse<Any>) -> () ) -> (SessionManager.MultipartFormDataEncodingResult) -> () {
         let uploadClosure = { (result: SessionManager.MultipartFormDataEncodingResult) in
             switch result {
             case .success(let upload, _, _):
@@ -111,14 +127,13 @@ struct SnapchatAPI {
                     }
                 }
                 upload.responseJSON(completionHandler: responseJSONClosure)
-            case .failure(_):
-                completion(SnapchatAPIConstants.Error.alamofireEncodingError)
+            case .failure:
+                completionHandler(SnapchatAPIConstants.Error.alamofireEncodingError)
             }
         }
         
-        // Using Alamofire we will upload the data on a server and return
-        // response with completion block
-        Alamofire.upload(multipartFormData: multipartDataClosure, to: SnapchatAPIConstants.URL.uploadImage, encodingCompletion: uploadClosure)
+        return uploadClosure
+
     }
     
     /// Uploads image, but only to specific user

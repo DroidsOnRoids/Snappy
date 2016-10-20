@@ -22,7 +22,7 @@
 		B03933191C961B03005485E7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03933171C961B03005485E7 /* Alamofire.framework */; };
 		B039331A1C961B03005485E7 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03933181C961B03005485E7 /* AlamofireImage.framework */; };
 		C7311E24C5CEBF584098DD00 /* Pods_SnappyAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9B4CE98120A2D83ECB1ABB /* Pods_SnappyAPITests.framework */; };
-		E52C0FE21DACDA32006B017E /* ASnappyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C0FE11DACDA32006B017E /* ASnappyAPITests.swift */; };
+		E52C0FE21DACDA32006B017E /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C0FE11DACDA32006B017E /* APITests.swift */; };
 		E542A7E51DB5FD66003AA132 /* PhotoViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542A7E41DB5FD66003AA132 /* PhotoViewControllerTests.swift */; };
 		E58FA4741DB6450D00A42E03 /* CameraManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FA4731DB6450D00A42E03 /* CameraManagerTests.swift */; };
 		E5C33F361DAD10AC00AA3EB5 /* thunder.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C33F351DAD10AC00AA3EB5 /* thunder.png */; };
@@ -60,7 +60,7 @@
 		B03933181C961B03005485E7 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = "Pods/../build/Debug-iphoneos/AlamofireImage.framework"; sourceTree = "<group>"; };
 		C525048BC1526468B8B97500 /* Pods-SnappyAPITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnappyAPITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SnappyAPITests/Pods-SnappyAPITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E52C0FDF1DACDA32006B017E /* SnappyAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnappyAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E52C0FE11DACDA32006B017E /* ASnappyAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASnappyAPITests.swift; sourceTree = "<group>"; };
+		E52C0FE11DACDA32006B017E /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		E52C0FE31DACDA32006B017E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E542A7E41DB5FD66003AA132 /* PhotoViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewControllerTests.swift; sourceTree = "<group>"; };
 		E58FA4731DB6450D00A42E03 /* CameraManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManagerTests.swift; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 		E52C0FE01DACDA32006B017E /* SnappyAPITests */ = {
 			isa = PBXGroup;
 			children = (
-				E52C0FE11DACDA32006B017E /* ASnappyAPITests.swift */,
+				E52C0FE11DACDA32006B017E /* APITests.swift */,
 				E5C33F351DAD10AC00AA3EB5 /* thunder.png */,
 				E52C0FE31DACDA32006B017E /* Info.plist */,
 				E542A7E41DB5FD66003AA132 /* PhotoViewControllerTests.swift */,
@@ -424,7 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E58FA4741DB6450D00A42E03 /* CameraManagerTests.swift in Sources */,
-				E52C0FE21DACDA32006B017E /* ASnappyAPITests.swift in Sources */,
+				E52C0FE21DACDA32006B017E /* APITests.swift in Sources */,
 				E542A7E51DB5FD66003AA132 /* PhotoViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

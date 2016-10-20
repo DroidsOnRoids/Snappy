@@ -110,4 +110,30 @@ class ASnappyAPITests: XCTestCase {
             XCTAssertTrue(result?.value!.size.width == 512.0)
         })
     }
+    
+    
+    func testErrorWithMessage() {
+        let message = "testMessage"
+        let error = NSError(domain: "com.alamofire",
+                            code: -100,
+                            userInfo: [NSLocalizedDescriptionKey: message])
+        
+        let alamofireError = SnapchatAPIConstants.Error.alamofireResultError(withMessage: "testMessage")
+        let str : Result<Any> = Result.failure(error)
+        XCTAssertTrue(str.description == alamofireError.description)
+        XCTAssertTrue(str.debugDescription == alamofireError.debugDescription)
+        XCTAssertTrue(str.isFailure == alamofireError.isFailure)
+    }
+    
+    func testImageToData() {
+        let bundle = Bundle(for: self.classForCoder)
+        let image = UIImage(contentsOfFile: bundle.path(forResource: "thunder", ofType: "png")!)
+        let imageData = image?.toData(withCompressQuality: 0.8)
+        
+        XCTAssertEqual(imageData!, UIImageJPEGRepresentation(image!, 0.8))
+    }
+    
+    func testGetImagesEndpoint() {
+        XCTAssertEqual(SnapchatAPIConstants.URL.getImages(forUser: 11),"https://snappytestapp.herokuapp.com/images/get/11")
+    }
 }
