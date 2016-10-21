@@ -76,7 +76,7 @@ struct SnapchatAPI {
         // Here we have 80% compression quality, which is 0.8 by default,
         // you can change it by specifying parameter in toData() function.
         // We use guard to be sure that our image can be represented as
-        // NSData.
+        // Data.
         guard let imageData = image.toData() else { return }
         
         let multipartDataClosure = SnapchatAPI.prepareMultiPartDataClosure(image: imageData)
