@@ -82,4 +82,37 @@ class APIWithStubsTests: XCTestCase {
         
         waitForExpectations(timeout: 5.0, handler: nil)
     }
+    
+    
+    func testAUploadImageWithNoError() {
+        let exp = expectation(description: "upload image with no error")
+        
+        OHHTTPStubs.stubRequests(passingTest: { (request) -> Bool in
+            return true
+        }) { (request) -> OHHTTPStubsResponse in
+            let stubData = "{\"Success\": \"Image uploaded correctly.\"}".data(using: .utf8)
+            return OHHTTPStubsResponse(data: stubData!, statusCode: 400, headers: nil)
+        }
+        
+        let bundle = Bundle(for: self.classForCoder)
+        let image = UIImage(contentsOfFile: bundle.path(forResource: "thunder", ofType: "png")!)
+        
+        if let image = image {
+            SnapchatAPI.upload(image: image, completion: { response in
+                switch response {
+                case .success(_):
+                     exp.fulfill()
+                    XCTAssertEqual(response.value.debugDescription, "Optional({\n    Success = \"Image uploaded correctly.\";\n})")
+                default:
+                    break
+                }
+            })
+        } else {
+            XCTAssert(false)
+        }
+        
+        waitForExpectations(timeout: 5.0, handler: nil)
+    }
+    
+    
 }
