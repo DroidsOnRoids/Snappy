@@ -80,8 +80,6 @@ class APIWithStubsTests: XCTestCase {
             XCTAssert(false)
         }
         
-        waitForExpectations(timeout: 5.0, handler: { _ in
-            
-        })
+        waitForExpectations(timeout: 5.0, handler: nil)
     }
 }
