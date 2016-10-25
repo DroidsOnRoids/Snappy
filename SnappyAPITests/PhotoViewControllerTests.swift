@@ -22,25 +22,21 @@ class PhotoViewControllerTests: XCTestCase {
             
             let _ = viewController?.view
         }
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
     
     func testRemoveCameraPreview() {
-        if let firstSubview = viewController?.view.subviews.first {
-            viewController?.removeCameraPreview()
-            XCTAssertFalse((viewController?.view.subviews.contains(firstSubview))!)
+        if  let viewController = viewController, let firstSubview = viewController.view.subviews.first {
+            viewController.removeCameraPreview()
+            XCTAssertFalse(viewController.view.subviews.contains(firstSubview))
         }
     }
     
     func testInsertCameraPreview() {
         let someView = UIView()
-        viewController?.insertCameraPreview(someView)
-        XCTAssertTrue((viewController?.view.subviews.contains(someView))!)
+        guard let viewController = viewController else { XCTAssert(false) ; return  }
+      
+        viewController.insertCameraPreview(someView)
+        XCTAssertTrue(viewController.view.subviews.contains(someView))
     }
     
     func testZHidePhoto() {
@@ -48,8 +44,7 @@ class PhotoViewControllerTests: XCTestCase {
             viewController.hidePhoto()
             RunLoop.current.run(until: Date().addingTimeInterval(2.0))
             XCUIDevice.shared().press(.home)
-
-            XCTAssertFalse((viewController.view.subviews.contains(lastSubview)))
+            XCTAssertFalse(viewController.view.subviews.contains(lastSubview))
         } else {
             XCTAssert(false)
         }
@@ -57,8 +52,10 @@ class PhotoViewControllerTests: XCTestCase {
     
     func testTakePhotoButtonActionWithNonNilImage() {
         MockCameraManager.mockImage = UIImage()
-        MockCameraManager.takePhoto((viewController?.takePhotoCompletion)!)
-        let view = viewController?.view.subviews.last
+        guard let viewController = viewController else { XCTAssert(false) ; return  }
+    
+        MockCameraManager.takePhoto(viewController.takePhotoCompletion)
+        let view = viewController.view.subviews.last
         XCTAssertTrue(view?.classForCoder == UIImageView.classForCoder())
     }
   
@@ -76,7 +73,7 @@ class PhotoViewControllerTests: XCTestCase {
         guard let viewController = viewController else { XCTAssert(false) ; return  }
         
         MockCameraManager.switchCamera((viewController.switchCameraCompletion))
-        XCTAssertTrue((viewController.view.subviews.contains( MockCameraManager.mockView!)))
+        XCTAssertTrue(viewController.view.subviews.contains(MockCameraManager.mockView!))
     }
    
     func testSwitchCameraWithNilView() {
@@ -84,7 +81,7 @@ class PhotoViewControllerTests: XCTestCase {
         guard let viewController = viewController else { XCTAssert(false) ; return  }
         
         let countOfSubviews = viewController.view.subviews.count
-        MockCameraManager.switchCamera((viewController.switchCameraCompletion))
+        MockCameraManager.switchCamera(viewController.switchCameraCompletion)
         XCTAssertEqual(countOfSubviews, viewController.view.subviews.count)
     }
     
@@ -99,28 +96,3 @@ class PhotoViewControllerTests: XCTestCase {
     }
     
 }
-
-class MockCameraManager: CameraManagerProtocol {
-    static var mockView : UIView?
-    static var mockImage: UIImage?
-    static var mockBool: Bool?
-    static func generateCameraPreview(previewSize size: CGSize, completion: @escaping (_ sessionPreviewView: UIView?) -> ()) {
-        completion(mockView)
-    }
-    
-    static func switchCamera(_ completion: @escaping (_ sessionPreviewView: UIView?) -> ()) {
-        completion(mockView)
-    }
-    
-    static func toggleFlashMode(_ bool: Bool) {
-        mockBool = bool
-    }
-    
-    static func takePhoto(_ completion: @escaping (UIImage?) -> ()){
-        completion(mockImage)
-    }
-    
-}
-
-
-

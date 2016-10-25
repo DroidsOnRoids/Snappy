@@ -32,8 +32,7 @@ class PhotoViewController: UIViewController {
         Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(PhotoViewController.hidePhoto), userInfo: nil, repeats: false)
     }
     
-    lazy var switchCameraCompletion : ((UIView?) -> ()) = {
-        [unowned self] sessionPreview in
+    lazy var switchCameraCompletion : ((UIView?) -> ()) = { [unowned self] sessionPreview in
         self.insertCameraPreview(sessionPreview)
     }
     

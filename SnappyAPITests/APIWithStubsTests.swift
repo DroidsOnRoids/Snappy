@@ -15,14 +15,9 @@ import OHHTTPStubs
 
 class APIWithStubsTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Pust setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
+   
     override func tearDown() {
         OHHTTPStubs.removeAllStubs()
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
@@ -39,10 +34,10 @@ class APIWithStubsTests: XCTestCase {
         
         SnapchatAPI.getImages { (response) in
             switch response {
-            case .success(_):
+            case .success:
                 XCTAssert(false)
-            case .failure(_):
-              XCTAssert(true)
+            case .failure:
+                XCTAssert(true)
             }
             
             expectationGetAllImages.fulfill()
@@ -51,10 +46,8 @@ class APIWithStubsTests: XCTestCase {
         waitForExpectations(timeout: 5.0, handler: nil)
     }
     
-    
-    
     func testAUploadImageWith400Error() {
-        let exp = expectation(description: "upload image with 400 error")
+        let expectationUploadWithError = expectation(description: "upload image with 400 error")
         
         OHHTTPStubs.stubRequests(passingTest: { (request) -> Bool in
             return true
@@ -70,10 +63,9 @@ class APIWithStubsTests: XCTestCase {
             SnapchatAPI.upload(image: image, completion: { response in
                 switch response {
                 case .failure(let error):
-                    exp.fulfill()
+                    expectationUploadWithError.fulfill()
                     XCTAssertEqual(error.localizedDescription, "Stub is working!")
-                default:
-                break
+                default: ()
                 }
             })
         } else {
@@ -83,15 +75,14 @@ class APIWithStubsTests: XCTestCase {
         waitForExpectations(timeout: 5.0, handler: nil)
     }
     
-    
     func testAUploadImageWithNoError() {
-        let exp = expectation(description: "upload image with no error")
+        let expectationWithNoError = expectation(description: "upload image with no error")
         
         OHHTTPStubs.stubRequests(passingTest: { (request) -> Bool in
             return true
         }) { (request) -> OHHTTPStubsResponse in
             let stubData = "{\"Success\": \"Image uploaded correctly.\"}".data(using: .utf8)
-            return OHHTTPStubsResponse(data: stubData!, statusCode: 400, headers: nil)
+            return OHHTTPStubsResponse(data: stubData!, statusCode: 200, headers: nil)
         }
         
         let bundle = Bundle(for: self.classForCoder)
@@ -100,11 +91,11 @@ class APIWithStubsTests: XCTestCase {
         if let image = image {
             SnapchatAPI.upload(image: image, completion: { response in
                 switch response {
-                case .success(_):
-                     exp.fulfill()
-                    XCTAssertEqual(response.value.debugDescription, "Optional({\n    Success = \"Image uploaded correctly.\";\n})")
-                default:
-                    break
+                case .success:
+                    expectationWithNoError.fulfill()
+                    let responseDict = response.value as? [String: String]
+                    XCTAssertEqual(responseDict?["Success"], "Image uploaded correctly.")
+                default: ()
                 }
             })
         } else {
@@ -114,5 +105,28 @@ class APIWithStubsTests: XCTestCase {
         waitForExpectations(timeout: 5.0, handler: nil)
     }
     
-    
+    func testDownloadAllImagesFromStub() {
+        let expectationGetAllImages = expectation(description: "download from stub")
+        
+        OHHTTPStubs.stubRequests(passingTest: { (request) -> Bool in
+            return true
+        }) { (request) -> OHHTTPStubsResponse in
+            let bundle = Bundle(for: self.classForCoder)
+            let stubData = try! Data(contentsOf: URL(fileURLWithPath: bundle.path(forResource: "sampleData", ofType: "json", inDirectory: nil)!))
+            return OHHTTPStubsResponse(data: stubData, statusCode: 200, headers: nil)
+        }
+        
+        SnapchatAPI.getImages { (response) in
+            switch response {
+            case .success(let response):
+                let responseDict = response as? [String: Any]
+                XCTAssertTrue((responseDict?["images"] as? [[String: Any]])?.count == 2)
+            case .failure:
+                XCTAssert(false)
+            }
+            
+            expectationGetAllImages.fulfill()
+        }
+        waitForExpectations(timeout: 5.0, handler: nil)
+    }
 }

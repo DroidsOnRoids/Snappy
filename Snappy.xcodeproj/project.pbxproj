@@ -23,6 +23,9 @@
 		B039331A1C961B03005485E7 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03933181C961B03005485E7 /* AlamofireImage.framework */; };
 		C7311E24C5CEBF584098DD00 /* Pods_SnappyAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9B4CE98120A2D83ECB1ABB /* Pods_SnappyAPITests.framework */; };
 		E50E85E11DB9DA8400542B1A /* APIWithStubsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E85E01DB9DA8400542B1A /* APIWithStubsTests.swift */; };
+		E50E85E91DBE35F100542B1A /* SnappyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50E85E81DBE35F100542B1A /* SnappyUITests.swift */; };
+		E50E85F11DBE3BFE00542B1A /* sampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = E50E85F01DBE3BFE00542B1A /* sampleData.json */; };
+		E51C0D171DBF4F50006D13BC /* MockCameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51C0D161DBF4F50006D13BC /* MockCameraManager.swift */; };
 		E52C0FE21DACDA32006B017E /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C0FE11DACDA32006B017E /* APITests.swift */; };
 		E542A7E51DB5FD66003AA132 /* PhotoViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542A7E41DB5FD66003AA132 /* PhotoViewControllerTests.swift */; };
 		E58FA4741DB6450D00A42E03 /* CameraManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FA4731DB6450D00A42E03 /* CameraManagerTests.swift */; };
@@ -30,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E50E85EB1DBE35F100542B1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1458F50E1C95F81200218D06 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1458F5151C95F81200218D06;
+			remoteInfo = Snappy;
+		};
 		E52C0FE41DACDA32006B017E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1458F50E1C95F81200218D06 /* Project object */;
@@ -61,6 +71,11 @@
 		B03933181C961B03005485E7 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = "Pods/../build/Debug-iphoneos/AlamofireImage.framework"; sourceTree = "<group>"; };
 		C525048BC1526468B8B97500 /* Pods-SnappyAPITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnappyAPITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SnappyAPITests/Pods-SnappyAPITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E50E85E01DB9DA8400542B1A /* APIWithStubsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIWithStubsTests.swift; sourceTree = "<group>"; };
+		E50E85E61DBE35F100542B1A /* SnappyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnappyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E50E85E81DBE35F100542B1A /* SnappyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappyUITests.swift; sourceTree = "<group>"; };
+		E50E85EA1DBE35F100542B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E50E85F01DBE3BFE00542B1A /* sampleData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = sampleData.json; path = ../../../Documents/sampleData.json; sourceTree = "<group>"; };
+		E51C0D161DBF4F50006D13BC /* MockCameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCameraManager.swift; sourceTree = "<group>"; };
 		E52C0FDF1DACDA32006B017E /* SnappyAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnappyAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E52C0FE11DACDA32006B017E /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		E52C0FE31DACDA32006B017E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,6 +96,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E50E85E31DBE35F100542B1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E52C0FDC1DACDA32006B017E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -97,6 +119,7 @@
 			children = (
 				1458F5181C95F81200218D06 /* Snappy */,
 				E52C0FE01DACDA32006B017E /* SnappyAPITests */,
+				E50E85E71DBE35F100542B1A /* SnappyUITests */,
 				1458F5171C95F81200218D06 /* Products */,
 				9ADF78E6010D41B1A87137B5 /* Frameworks */,
 				AC0C95CCC3A5712CBA63EBDB /* Pods */,
@@ -108,6 +131,7 @@
 			children = (
 				1458F5161C95F81200218D06 /* Snappy.app */,
 				E52C0FDF1DACDA32006B017E /* SnappyAPITests.xctest */,
+				E50E85E61DBE35F100542B1A /* SnappyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,6 +217,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E50E85E71DBE35F100542B1A /* SnappyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E50E85E81DBE35F100542B1A /* SnappyUITests.swift */,
+				E50E85EA1DBE35F100542B1A /* Info.plist */,
+			);
+			path = SnappyUITests;
+			sourceTree = "<group>";
+		};
 		E52C0FE01DACDA32006B017E /* SnappyAPITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,7 +234,9 @@
 				E5C33F351DAD10AC00AA3EB5 /* thunder.png */,
 				E52C0FE31DACDA32006B017E /* Info.plist */,
 				E542A7E41DB5FD66003AA132 /* PhotoViewControllerTests.swift */,
+				E51C0D161DBF4F50006D13BC /* MockCameraManager.swift */,
 				E58FA4731DB6450D00A42E03 /* CameraManagerTests.swift */,
+				E50E85F01DBE3BFE00542B1A /* sampleData.json */,
 			);
 			path = SnappyAPITests;
 			sourceTree = "<group>";
@@ -228,6 +263,24 @@
 			productName = Snappy;
 			productReference = 1458F5161C95F81200218D06 /* Snappy.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E50E85E51DBE35F100542B1A /* SnappyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E50E85ED1DBE35F100542B1A /* Build configuration list for PBXNativeTarget "SnappyUITests" */;
+			buildPhases = (
+				E50E85E21DBE35F100542B1A /* Sources */,
+				E50E85E31DBE35F100542B1A /* Frameworks */,
+				E50E85E41DBE35F100542B1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E50E85EC1DBE35F100542B1A /* PBXTargetDependency */,
+			);
+			name = SnappyUITests;
+			productName = SnappyUITests;
+			productReference = E50E85E61DBE35F100542B1A /* SnappyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		E52C0FDE1DACDA32006B017E /* SnappyAPITests */ = {
 			isa = PBXNativeTarget;
@@ -265,6 +318,12 @@
 						DevelopmentTeam = 27FAFL2WP5;
 						LastSwiftMigration = 0800;
 					};
+					E50E85E51DBE35F100542B1A = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 27FAFL2WP5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1458F5151C95F81200218D06;
+					};
 					E52C0FDE1DACDA32006B017E = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 27FAFL2WP5;
@@ -288,6 +347,7 @@
 			targets = (
 				1458F5151C95F81200218D06 /* Snappy */,
 				E52C0FDE1DACDA32006B017E /* SnappyAPITests */,
+				E50E85E51DBE35F100542B1A /* SnappyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -303,11 +363,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E50E85E41DBE35F100542B1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E52C0FDD1DACDA32006B017E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E5C33F361DAD10AC00AA3EB5 /* thunder.png in Resources */,
+				E50E85F11DBE3BFE00542B1A /* sampleData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,12 +490,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E50E85E21DBE35F100542B1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E50E85E91DBE35F100542B1A /* SnappyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E52C0FDB1DACDA32006B017E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E50E85E11DB9DA8400542B1A /* APIWithStubsTests.swift in Sources */,
 				E58FA4741DB6450D00A42E03 /* CameraManagerTests.swift in Sources */,
+				E51C0D171DBF4F50006D13BC /* MockCameraManager.swift in Sources */,
 				E52C0FE21DACDA32006B017E /* APITests.swift in Sources */,
 				E542A7E51DB5FD66003AA132 /* PhotoViewControllerTests.swift in Sources */,
 			);
@@ -436,6 +513,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E50E85EC1DBE35F100542B1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1458F5151C95F81200218D06 /* Snappy */;
+			targetProxy = E50E85EB1DBE35F100542B1A /* PBXContainerItemProxy */;
+		};
 		E52C0FE51DACDA32006B017E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1458F5151C95F81200218D06 /* Snappy */;
@@ -582,6 +664,44 @@
 			};
 			name = Release;
 		};
+		E50E85EE1DBE35F100542B1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 27FAFL2WP5;
+				INFOPLIST_FILE = SnappyUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.droidsonroids.SnappyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Snappy;
+			};
+			name = Debug;
+		};
+		E50E85EF1DBE35F100542B1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 27FAFL2WP5;
+				INFOPLIST_FILE = SnappyUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.droidsonroids.SnappyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Snappy;
+			};
+			name = Release;
+		};
 		E52C0FE61DACDA32006B017E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C525048BC1526468B8B97500 /* Pods-SnappyAPITests.debug.xcconfig */;
@@ -641,6 +761,15 @@
 			buildConfigurations = (
 				1458F5291C95F81200218D06 /* Debug */,
 				1458F52A1C95F81200218D06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E50E85ED1DBE35F100542B1A /* Build configuration list for PBXNativeTarget "SnappyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E50E85EE1DBE35F100542B1A /* Debug */,
+				E50E85EF1DBE35F100542B1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,15 +1,17 @@
 platform :ios, '9.0'
 use_frameworks!
 
-target 'Snappy' do
+def libraries
    	pod 'AlamofireImage', :git => 'https://github.com/Alamofire/AlamofireImage'
-	pod 'OHHTTPStubs'
-        pod 'OHHTTPStubs/Swift'
+    pod 'OHHTTPStubs'
+    pod 'OHHTTPStubs/Swift'
+end
+
+target 'Snappy' do
+    libraries
 end
 
 target 'SnappyAPITests' do
-   	pod 'AlamofireImage', :git => 'https://github.com/Alamofire/AlamofireImage'
-	pod 'OHHTTPStubs'
-	pod 'OHHTTPStubs/Swift' 
+    libraries
 end
 
