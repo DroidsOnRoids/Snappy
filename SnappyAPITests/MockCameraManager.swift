@@ -11,6 +11,7 @@ import UIKit
 @testable import Snappy
 
 class MockCameraManager: CameraManagerProtocol {
+   
     static var mockView : UIView?
     static var mockImage: UIImage?
     static var mockBool: Bool?

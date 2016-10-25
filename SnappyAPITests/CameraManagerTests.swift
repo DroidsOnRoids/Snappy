@@ -33,16 +33,19 @@ class CameraManagerTests: XCTestCase {
 
     func testATakePhoto() {
         let expectationTakePhoto = expectation(description: "take photo")
+        var responseImage: UIImage?
         CameraManager.takePhoto { image in
-            if let image = image {
-                XCTAssertTrue(image.size.width > 1000)
-                expectationTakePhoto.fulfill()
+            responseImage = image
+            expectationTakePhoto.fulfill()
+        }
+        
+        waitForExpectations(timeout: 6.0, handler: { _ in
+            if let responseImage = responseImage {
+                XCTAssertTrue(responseImage.size.width > 1000)
             } else {
                 XCTAssert(false)
             }
-        }
-        
-        waitForExpectations(timeout: 6.0, handler: nil)
+        })
     }
     
     func testAToggleFlashMode() {

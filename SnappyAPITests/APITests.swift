@@ -20,16 +20,9 @@ class ASnappyAPITests: XCTestCase {
         
         if let image = image {
             SnapchatAPI.upload(image: image, toUser: 11, completion: { response in
-                switch response {
-                case .success:
-                    result = response
-                case .failure:
-                    XCTAssert(false)
-                }
+                result = response
                 expectationUploadForSpecificUser.fulfill()
             })
-        } else {
-            XCTAssert(false)
         }
         
         waitForExpectations(timeout: 5.0, handler: { error in
@@ -45,15 +38,18 @@ class ASnappyAPITests: XCTestCase {
             case .success(let response):
                 let responseDict = response as? [String: Any]
                 imageArray = responseDict?["images"] as? [[String: Any]]
-            case .failure:
-                XCTAssert(false)
+            case .failure: ()
             }
             
             expectationGetAllImages.fulfill()
         }
         
         waitForExpectations(timeout: 5.0, handler: { error in
-            XCTAssertTrue(imageArray!.count > 0)
+            if let imageArray = imageArray {
+                XCTAssertTrue(imageArray.count > 0)
+            } else {
+                XCTAssert(false)
+            }
         })
     }
     
@@ -69,13 +65,11 @@ class ASnappyAPITests: XCTestCase {
                 switch response {
                 case .success:
                     result = response
-                case .failure:
-                    XCTAssert(false)
+                case .failure:()
                 }
+                
                 expectationUploadImage.fulfill()
             })
-        } else {
-            XCTAssert(false)
         }
 
         waitForExpectations(timeout: 5.0, handler: { error in
