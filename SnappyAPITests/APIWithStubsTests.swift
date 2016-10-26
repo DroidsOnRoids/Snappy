@@ -35,7 +35,7 @@ class APIWithStubsTests: XCTestCase {
         SnapchatAPI.getImages { (response) in
             switch response {
             case .success:
-                XCTAssert(false)
+                XCTFail()
             case .failure:
                 XCTAssert(true)
             }
@@ -105,7 +105,7 @@ class APIWithStubsTests: XCTestCase {
             if let message = responseDict?["Success"] {
                 XCTAssertEqual(message, "Image uploaded correctly.")
             } else {
-                XCTAssert(false)
+                XCTFail()
             }
         })
     }
@@ -137,7 +137,7 @@ class APIWithStubsTests: XCTestCase {
             if let images = responseDict?["images"] as? [AnyObject] {
                XCTAssertTrue(images.count == 2)
             } else {
-                XCTAssert(false)
+                XCTFail()
             }
             
         })

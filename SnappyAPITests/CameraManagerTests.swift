@@ -43,7 +43,7 @@ class CameraManagerTests: XCTestCase {
             if let responseImage = responseImage {
                 XCTAssertTrue(responseImage.size.width > 1000)
             } else {
-                XCTAssert(false)
+                XCTFail()
             }
         })
     }

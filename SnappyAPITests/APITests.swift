@@ -48,7 +48,7 @@ class ASnappyAPITests: XCTestCase {
             if let imageArray = imageArray {
                 XCTAssertTrue(imageArray.count > 0)
             } else {
-                XCTAssert(false)
+                XCTFail()
             }
         })
     }
@@ -96,7 +96,7 @@ class ASnappyAPITests: XCTestCase {
                     expectationDownloadImage.fulfill()
                 }
             case .failure:
-               XCTAssert(false)
+               XCTFail()
                expectationDownloadImage.fulfill()
             }
         }

@@ -16,13 +16,11 @@ class SnappyUITests: XCTestCase {
         XCUIApplication().launch()
     }
     
-
     func testTableViewImages() {
         XCUIDevice.shared().orientation = .portrait
         
         let scrollViewsQuery = XCUIApplication().scrollViews
         scrollViewsQuery.otherElements.scrollViews.otherElements.containing(.button, identifier:"TakePhotoButtonImage").element.swipeLeft()
-        
         let table = scrollViewsQuery.children(matching: .table).element
 
         XCTAssertTrue(table.cells.count > 0)
