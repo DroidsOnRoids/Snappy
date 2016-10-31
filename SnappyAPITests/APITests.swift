@@ -13,25 +13,31 @@ import Alamofire
 class ASnappyAPITests: XCTestCase {
     
     func testUploadToUser() {
-        let expectationUploadForSpecificUser = expectation(description: "upload image for specific user")
+       weak var expectationUploadForSpecificUser = expectation(description: "upload image for specific user")
         let bundle = Bundle(for: self.classForCoder)
         let image = UIImage(contentsOfFile: bundle.path(forResource: "thunder", ofType: "png")!)
-        var result : Result<Any>?
+        var result: [String: String]?
         
         if let image = image {
             SnapchatAPI.upload(image: image, toUser: 11, completion: { response in
-                result = response
-                expectationUploadForSpecificUser.fulfill()
+                switch response {
+                case .success(let response):
+                    result = response as? [String: String]
+                case .failure: ()
+                }
+              
+                expectationUploadForSpecificUser?.fulfill()
+                expectationUploadForSpecificUser = nil
             })
         }
         
         waitForExpectations(timeout: 5.0, handler: { error in
-            XCTAssert((result?.value != nil))
+            XCTAssert(result?["error"] == nil)
         })
     }
     
     func testGetAllImages() {
-        let expectationGetAllImages = expectation(description: "getting all images")
+        weak var expectationGetAllImages = expectation(description: "getting all images")
         var imageArray : [Any]?
         SnapchatAPI.getImages { (response) in
             switch response {
@@ -41,7 +47,8 @@ class ASnappyAPITests: XCTestCase {
             case .failure: ()
             }
             
-            expectationGetAllImages.fulfill()
+            expectationGetAllImages?.fulfill()
+            expectationGetAllImages = nil
         }
         
         waitForExpectations(timeout: 5.0, handler: { error in
@@ -54,7 +61,7 @@ class ASnappyAPITests: XCTestCase {
     }
     
     func testAUploadImage() {
-        let expectationUploadImage = expectation(description: "upload image")
+        weak var expectationUploadImage = expectation(description: "upload image")
         
         let bundle = Bundle(for: self.classForCoder)
         let image = UIImage(contentsOfFile: bundle.path(forResource: "thunder", ofType: "png")!)
@@ -68,7 +75,9 @@ class ASnappyAPITests: XCTestCase {
                 case .failure:()
                 }
                 
-                expectationUploadImage.fulfill()
+                expectationUploadImage?.fulfill()
+                expectationUploadImage = nil
+                
             })
         }
 
@@ -77,8 +86,9 @@ class ASnappyAPITests: XCTestCase {
         })
     }
     
-    func testDownloadImage() {
-        let expectationDownloadImage = expectation(description: "get and download image")
+    func testGetImageAndDownloadImage() {
+        weak var expectationDownloadImage = expectation(description: "get and download image")
+        weak var expectationGetImage = expectation(description: "get image")
         var result : Result<UIImage>?
         SnapchatAPI.getImages { (response) in
             switch response {
@@ -89,20 +99,72 @@ class ASnappyAPITests: XCTestCase {
                 let imageUrl = imageArray?[0]["url"] as? String
                 if let imageUrl = imageUrl {
                     SnapchatAPI.downloadImage(imageUrl) { res in
-                        expectationDownloadImage.fulfill()
+                        expectationDownloadImage?.fulfill()
+                        expectationGetImage?.fulfill()
+                        expectationGetImage = nil
+                        expectationDownloadImage = nil
                         result = res
                     }
                 } else {
-                    expectationDownloadImage.fulfill()
+                    XCTFail()
+                    expectationGetImage?.fulfill()
+                    expectationGetImage = nil
                 }
             case .failure:
                XCTFail()
-               expectationDownloadImage.fulfill()
+               expectationGetImage?.fulfill()
+               expectationGetImage = nil
             }
         }
         
         waitForExpectations(timeout: 10.0, handler: { _ in
-            XCTAssertTrue(result?.value!.size.width == 512.0)
+            XCTAssertTrue(result?.value?.size.width == 512.0)
+        })
+    }
+    
+    func getAllImages(completion: @escaping ([Any]?) -> () ) {
+        var imageArray : [Any]?
+        SnapchatAPI.getImages { (response) in
+            switch response {
+            case .success(let response):
+                let responseDict = response as? [String: Any]
+                imageArray = responseDict?["images"] as? [[String: Any]]
+            case .failure: ()
+            }
+            
+            completion(imageArray)
+         }
+    }
+    
+    func testRemoveImageWithSpecificUser() {
+        weak var expectationUploadImage = expectation(description: "upload image")
+        
+        let bundle = Bundle(for: self.classForCoder)
+        let image = UIImage(contentsOfFile: bundle.path(forResource: "thunder", ofType: "png")!)
+        var result : [String: String]?
+        getAllImages { images in
+            if let imageFileName = (images?.first as? [String: Any])?["file_name"] as? String {
+                if let image = image {
+                    SnapchatAPI.upload(image: image, completion: { response in
+                        switch response {
+                        case .success:
+
+                            SnapchatAPI.removeImage(forUser: nil, fileName: imageFileName, completionHandler: { removeResult in
+                                result = removeResult.value as? [String: String]
+                                expectationUploadImage?.fulfill()
+                                expectationUploadImage = nil
+                            })
+                        case .failure:()
+                        }
+                    })
+                }
+            } else {
+                XCTFail("there is no images on server")
+            }
+        }
+    
+        waitForExpectations(timeout: 5.0, handler: { error in
+            XCTAssert(result?["error"] == nil)
         })
     }
     
@@ -114,18 +176,24 @@ class ASnappyAPITests: XCTestCase {
         
         let alamofireError = SnapchatAPIConstants.Error.alamofireResultError(withMessage: "testMessage")
       
-        
         let str: Result<Any> = Result.failure(error)
         XCTAssertTrue(str.description == alamofireError.description)
         XCTAssertTrue(str.debugDescription == alamofireError.debugDescription)
         XCTAssertTrue(str.isFailure == alamofireError.isFailure)
-        
     }
     
     func testImageToData() {
         let bundle = Bundle(for: self.classForCoder)
         let image = UIImage(contentsOfFile: bundle.path(forResource: "thunder", ofType: "png")!)
         let imageData = image?.toData(withCompressQuality: 0.8)
+        
+        XCTAssertEqual(imageData!, UIImageJPEGRepresentation(image!, 0.8))
+    }
+   
+    func testImageToDataWithDefault08Value() {
+        let bundle = Bundle(for: self.classForCoder)
+        let image = UIImage(contentsOfFile: bundle.path(forResource: "thunder", ofType: "png")!)
+        let imageData = image?.toData()
         
         XCTAssertEqual(imageData!, UIImageJPEGRepresentation(image!, 0.8))
     }

@@ -30,12 +30,16 @@ struct SnapchatAPIConstants {
         static func getImages(forUser userId: Int) -> String {
             return imagesEndpoint + "/get/\(userId)"
         }
+        static let removeImage = {
+            return imagesEndpoint + "/remove"
+        }()
     }
     
     struct Method {
         static let getImages: HTTPMethod = .get
         static let uploadImage: HTTPMethod = .post
         static let downloadImage: HTTPMethod = .get
+        static let removeImage: HTTPMethod = .post
     }
     
     struct Error {
@@ -59,6 +63,7 @@ struct SnapchatAPIConstants {
         static let imageFile = "file"
         static let toUserID = "to_userId"
         static let fromUserID = "from_userId"
+        static let fileName = "file_name"
     }
 }
 
@@ -160,6 +165,18 @@ struct SnapchatAPI {
     static func downloadImage(_ url: String, completionHandler: @escaping APIImageCompletionHandler) {
         Alamofire
             .request(url, method: SnapchatAPIConstants.Method.downloadImage).responseImage{ (response) in
+                completionHandler(response.result)
+        }
+    }
+    
+    static func removeImage(forUser userId: Int?, fileName: String, completionHandler: @escaping APICompletionHandler) {
+        var parameters = ["file_name": fileName]
+        
+        if let userId = userId {
+            parameters["to_userId"] = "\(userId)"
+        }
+        
+        Alamofire.request(SnapchatAPIConstants.URL.removeImage, method: SnapchatAPIConstants.Method.removeImage, parameters:parameters, encoding: URLEncoding.httpBody, headers: nil).responseJSON { response in
                 completionHandler(response.result)
         }
     }

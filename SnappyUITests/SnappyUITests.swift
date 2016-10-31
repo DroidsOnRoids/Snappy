@@ -9,7 +9,7 @@
 import XCTest
 
 class SnappyUITests: XCTestCase {
-        
+
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
@@ -25,4 +25,16 @@ class SnappyUITests: XCTestCase {
 
         XCTAssertTrue(table.cells.count > 0)
     }
+    
+    func testNavigation() {
+        XCUIDevice.shared().orientation = .portrait
+    
+        let app = XCUIApplication()
+        let takephotobuttonimageElement = app.scrollViews.otherElements.scrollViews.otherElements.containing(.button, identifier:"TakePhotoButtonImage").element
+        takephotobuttonimageElement.swipeLeft()
+        
+        let scrollView = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .scrollView).element
+        scrollView.swipeRight()
+    }
+    
 }

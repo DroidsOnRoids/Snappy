@@ -19,6 +19,7 @@
 		1458F53C1C95FFCC00218D06 /* SnappyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F53B1C95FFCC00218D06 /* SnappyAPI.swift */; };
 		1458F53E1C96015B00218D06 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F53D1C96015B00218D06 /* ImagesViewController.swift */; };
 		510A4B47A892B9B43002987D /* Pods_Snappy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB1BAAF247DC8AE8CB8F3FA /* Pods_Snappy.framework */; };
+		59A28A12A559FCB51C35BF06 /* Pods_SnappyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8F2E59C97367EC8511ABAD /* Pods_SnappyUITests.framework */; };
 		B03933191C961B03005485E7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03933171C961B03005485E7 /* Alamofire.framework */; };
 		B039331A1C961B03005485E7 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03933181C961B03005485E7 /* AlamofireImage.framework */; };
 		C7311E24C5CEBF584098DD00 /* Pods_SnappyAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9B4CE98120A2D83ECB1ABB /* Pods_SnappyAPITests.framework */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0227DD909E62F527E6728612 /* Pods-SnappyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnappyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SnappyUITests/Pods-SnappyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		0BDD967B69F2E5D325E3803F /* Pods-SnappyAPITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnappyAPITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SnappyAPITests/Pods-SnappyAPITests.release.xcconfig"; sourceTree = "<group>"; };
 		1458F5161C95F81200218D06 /* Snappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1458F5191C95F81200218D06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,8 @@
 		1458F53B1C95FFCC00218D06 /* SnappyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnappyAPI.swift; sourceTree = "<group>"; };
 		1458F53D1C96015B00218D06 /* ImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
 		2A9B4CE98120A2D83ECB1ABB /* Pods_SnappyAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SnappyAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C8F2E59C97367EC8511ABAD /* Pods_SnappyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SnappyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		75EBC94849013C4A38DBC68F /* Pods-SnappyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnappyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SnappyUITests/Pods-SnappyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8CB1BAAF247DC8AE8CB8F3FA /* Pods_Snappy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snappy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4F428CF08A3ABC82CEF4087 /* Pods-Snappy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snappy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Snappy/Pods-Snappy.release.xcconfig"; sourceTree = "<group>"; };
 		B03933171C961B03005485E7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59A28A12A559FCB51C35BF06 /* Pods_SnappyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +207,7 @@
 				B03933181C961B03005485E7 /* AlamofireImage.framework */,
 				8CB1BAAF247DC8AE8CB8F3FA /* Pods_Snappy.framework */,
 				2A9B4CE98120A2D83ECB1ABB /* Pods_SnappyAPITests.framework */,
+				4C8F2E59C97367EC8511ABAD /* Pods_SnappyUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -213,6 +219,8 @@
 				A4F428CF08A3ABC82CEF4087 /* Pods-Snappy.release.xcconfig */,
 				C525048BC1526468B8B97500 /* Pods-SnappyAPITests.debug.xcconfig */,
 				0BDD967B69F2E5D325E3803F /* Pods-SnappyAPITests.release.xcconfig */,
+				75EBC94849013C4A38DBC68F /* Pods-SnappyUITests.debug.xcconfig */,
+				0227DD909E62F527E6728612 /* Pods-SnappyUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -268,9 +276,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E50E85ED1DBE35F100542B1A /* Build configuration list for PBXNativeTarget "SnappyUITests" */;
 			buildPhases = (
+				E75DD9CB04C1FA72C0A7A159 /* [CP] Check Pods Manifest.lock */,
 				E50E85E21DBE35F100542B1A /* Sources */,
 				E50E85E31DBE35F100542B1A /* Frameworks */,
 				E50E85E41DBE35F100542B1A /* Resources */,
+				A0FBCC431F8901040B7866EF /* [CP] Embed Pods Frameworks */,
+				0EF6516786ABEC0F92B6204D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -382,6 +393,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0EF6516786ABEC0F92B6204D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SnappyUITests/Pods-SnappyUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1BED46BC3ECD23AF89594F02 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -457,6 +483,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Snappy/Pods-Snappy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A0FBCC431F8901040B7866EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SnappyUITests/Pods-SnappyUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AFCAD1246F6051E92337E79E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -470,6 +511,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SnappyAPITests/Pods-SnappyAPITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E75DD9CB04C1FA72C0A7A159 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -666,6 +722,7 @@
 		};
 		E50E85EE1DBE35F100542B1A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75EBC94849013C4A38DBC68F /* Pods-SnappyUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -685,6 +742,7 @@
 		};
 		E50E85EF1DBE35F100542B1A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0227DD909E62F527E6728612 /* Pods-SnappyUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;

@@ -15,3 +15,7 @@ target 'SnappyAPITests' do
     libraries
 end
 
+target 'SnappyUITests' do
+    libraries
+end
+
