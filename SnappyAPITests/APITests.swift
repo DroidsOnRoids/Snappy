@@ -122,7 +122,7 @@ class ASnappyAPITests: XCTestCase {
         })
     }
     
-    func getAllImages(completion: @escaping ([Any]?) -> () ) {
+    func getAllImages(completion: @escaping ([String: Any]?) -> () ) {
         var imageArray : [Any]?
         SnapchatAPI.getImages { (response) in
             switch response {
@@ -132,23 +132,22 @@ class ASnappyAPITests: XCTestCase {
             case .failure: ()
             }
             
-            completion(imageArray)
+            completion(imageArray?.first as? [String: Any])
          }
     }
     
-    func testRemoveImageWithSpecificUser() {
+    func testRemoveImageWithoutSpecificUser() {
         weak var expectationUploadImage = expectation(description: "upload image")
         
         let bundle = Bundle(for: self.classForCoder)
         let image = UIImage(contentsOfFile: bundle.path(forResource: "thunder", ofType: "png")!)
         var result : [String: String]?
         getAllImages { images in
-            if let imageFileName = (images?.first as? [String: Any])?["file_name"] as? String {
+            if let imageFileName = images?["file_name"] as? String {
                 if let image = image {
                     SnapchatAPI.upload(image: image, completion: { response in
                         switch response {
                         case .success:
-
                             SnapchatAPI.removeImage(forUser: nil, fileName: imageFileName, completionHandler: { removeResult in
                                 result = removeResult.value as? [String: String]
                                 expectationUploadImage?.fulfill()
@@ -167,6 +166,38 @@ class ASnappyAPITests: XCTestCase {
             XCTAssert(result?["error"] == nil)
         })
     }
+    
+    func testRemoveImageWithSpecificUser() {
+        weak var expectationUploadImage = expectation(description: "upload image")
+        
+        let bundle = Bundle(for: self.classForCoder)
+        let image = UIImage(contentsOfFile: bundle.path(forResource: "thunder", ofType: "png")!)
+        var result : [String: String]?
+        getAllImages { images in
+            if let imageFileName = images?["file_name"] as? String {
+                if let image = image {
+                    SnapchatAPI.upload(image: image, completion: { response in
+                        switch response {
+                        case .success:
+                            SnapchatAPI.removeImage(forUser: images?["from_userId"] as? Int, fileName: imageFileName, completionHandler: { removeResult in
+                                result = removeResult.value as? [String: String]
+                                expectationUploadImage?.fulfill()
+                                expectationUploadImage = nil
+                            })
+                        case .failure:()
+                        }
+                    })
+                }
+            } else {
+                XCTFail("there is no images on server")
+            }
+        }
+        
+        waitForExpectations(timeout: 5.0, handler: { error in
+            XCTAssert(result?["error"] == nil)
+        })
+    }
+
     
     func testErrorWithMessage() {
         let message = "testMessage"
