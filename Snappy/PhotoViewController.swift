@@ -17,6 +17,25 @@ class PhotoViewController: UIViewController {
     fileprivate var currentFlashMode = false
     fileprivate let screenFrame = UIScreen.main.bounds
     
+    lazy var takePhotoCompletion: ((UIImage?) -> ()) = { [weak self] photo in
+        guard let `self` = self, let image = photo else { return }
+        let imageView  = UIImageView(frame: CGRect(
+            x: 0.0,
+            y: 0.0,
+            width: self.screenFrame.width,
+            height: self.screenFrame.height))
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = image
+        
+        self.view.addSubview(imageView)
+        
+        Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(PhotoViewController.hidePhoto), userInfo: nil, repeats: false)
+    }
+    
+    lazy var switchCameraCompletion : ((UIView?) -> ()) = { [unowned self] sessionPreview in
+        self.insertCameraPreview(sessionPreview)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewDidLoadSetup()
@@ -56,30 +75,14 @@ class PhotoViewController: UIViewController {
     }
     
 // MARK: Actions
-    
+   
     @IBAction func takePhotoButtonAction(_ sender: AnyObject) {
-        CameraManager.takePhoto { photo in
-            guard let image = photo else { return }
-            let imageView  = UIImageView(frame: CGRect(
-                x: 0.0,
-                y: 0.0,
-                width: self.screenFrame.width,
-                height: self.screenFrame.height))
-            imageView.contentMode = .scaleAspectFill
-            imageView.image = image
-            
-            self.view.addSubview(imageView)
-            
-            Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(PhotoViewController.hidePhoto), userInfo: nil, repeats: false)
-        }
+        CameraManager.takePhoto(takePhotoCompletion)
     }
     
     @IBAction func switchCameraButtonAction(_ sender: AnyObject) {
         removeCameraPreview()
-        
-        CameraManager.switchCamera { [unowned self] sessionPreview in
-            self.insertCameraPreview(sessionPreview)
-        }
+        CameraManager.switchCamera(switchCameraCompletion)
     }
     
     @IBAction func flashButtonAction(_ sender: AnyObject) {
